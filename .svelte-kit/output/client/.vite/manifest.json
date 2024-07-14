@@ -1,6 +1,6 @@
 {
   ".svelte-kit/generated/client-optimized/app.js": {
-    "file": "_app/immutable/entry/app.bvtKDlRF.js",
+    "file": "_app/immutable/entry/app.hGGe1sRX.js",
     "name": "entry/app",
     "src": ".svelte-kit/generated/client-optimized/app.js",
     "isEntry": true,
@@ -17,7 +17,7 @@
     ]
   },
   ".svelte-kit/generated/client-optimized/nodes/0.js": {
-    "file": "_app/immutable/nodes/0.u7hlpE1g.js",
+    "file": "_app/immutable/nodes/0.B2Pt1jB8.js",
     "name": "nodes/0",
     "src": ".svelte-kit/generated/client-optimized/nodes/0.js",
     "isEntry": true,
@@ -27,11 +27,11 @@
       "_index.B98PtPql.js"
     ],
     "css": [
-      "_app/immutable/assets/0.6y6l2yxf.css"
+      "_app/immutable/assets/0.DqQOMiGp.css"
     ]
   },
   ".svelte-kit/generated/client-optimized/nodes/1.js": {
-    "file": "_app/immutable/nodes/1.GGHEJOiZ.js",
+    "file": "_app/immutable/nodes/1.SrZdlLa4.js",
     "name": "nodes/1",
     "src": ".svelte-kit/generated/client-optimized/nodes/1.js",
     "isEntry": true,
@@ -39,11 +39,11 @@
     "imports": [
       "_scheduler.BRlKLB1Y.js",
       "_index.B98PtPql.js",
-      "_entry.C0_QmRMd.js"
+      "_entry.Bq3ZC-Kp.js"
     ]
   },
   ".svelte-kit/generated/client-optimized/nodes/2.js": {
-    "file": "_app/immutable/nodes/2.BHwCLuW1.js",
+    "file": "_app/immutable/nodes/2.Cb4g0eiI.js",
     "name": "nodes/2",
     "src": ".svelte-kit/generated/client-optimized/nodes/2.js",
     "isEntry": true,
@@ -51,14 +51,14 @@
     "imports": [
       "_scheduler.BRlKLB1Y.js",
       "_index.B98PtPql.js",
-      "_Project.O-O5NYNx.js"
+      "_Project.DwnrKChE.js"
     ],
     "css": [
-      "_app/immutable/assets/2.sSLQsJQJ.css"
+      "_app/immutable/assets/2.C7VvCO32.css"
     ]
   },
   ".svelte-kit/generated/client-optimized/nodes/3.js": {
-    "file": "_app/immutable/nodes/3.FtqqUFD6.js",
+    "file": "_app/immutable/nodes/3.BpPajg1t.js",
     "name": "nodes/3",
     "src": ".svelte-kit/generated/client-optimized/nodes/3.js",
     "isEntry": true,
@@ -67,21 +67,21 @@
       "_preload-helper.D6kgxu3v.js",
       "_scheduler.BRlKLB1Y.js",
       "_index.B98PtPql.js",
-      "_Project.O-O5NYNx.js"
+      "_Project.DwnrKChE.js"
     ],
     "dynamicImports": [
-      "node_modules/dexie-export-import/dist/dexie-export-import.mjs"
+      "src/lib/dixie-export-import/dexie-export-import.js"
     ],
     "css": [
-      "_app/immutable/assets/3.CtbcnW8e.css"
+      "_app/immutable/assets/2.C7VvCO32.css"
     ]
   },
-  "_Project.!~{009}~.js": {
+  "_Project.!~{00c}~.js": {
     "file": "_app/immutable/assets/Project.DlXdewRa.css",
-    "src": "_Project.!~{009}~.js"
+    "src": "_Project.!~{00c}~.js"
   },
-  "_Project.O-O5NYNx.js": {
-    "file": "_app/immutable/chunks/Project.O-O5NYNx.js",
+  "_Project.DwnrKChE.js": {
+    "file": "_app/immutable/chunks/Project.DwnrKChE.js",
     "name": "Project",
     "imports": [
       "_scheduler.BRlKLB1Y.js",
@@ -91,8 +91,8 @@
       "_app/immutable/assets/Project.DlXdewRa.css"
     ]
   },
-  "_entry.C0_QmRMd.js": {
-    "file": "_app/immutable/chunks/entry.C0_QmRMd.js",
+  "_entry.Bq3ZC-Kp.js": {
+    "file": "_app/immutable/chunks/entry.Bq3ZC-Kp.js",
     "name": "entry",
     "imports": [
       "_scheduler.BRlKLB1Y.js"
@@ -114,21 +114,18 @@
     "name": "scheduler"
   },
   "node_modules/@sveltejs/kit/src/runtime/client/entry.js": {
-    "file": "_app/immutable/entry/start.C0RN3tf7.js",
+    "file": "_app/immutable/entry/start.BAUzWV5j.js",
     "name": "entry/start",
     "src": "node_modules/@sveltejs/kit/src/runtime/client/entry.js",
     "isEntry": true,
     "imports": [
-      "_entry.C0_QmRMd.js"
+      "_entry.Bq3ZC-Kp.js"
     ]
   },
-  "node_modules/dexie-export-import/dist/dexie-export-import.mjs": {
-    "file": "_app/immutable/chunks/dexie-export-import.B1MJjP0k.js",
+  "src/lib/dixie-export-import/dexie-export-import.js": {
+    "file": "_app/immutable/chunks/dexie-export-import.BG74iNeT.js",
     "name": "dexie-export-import",
-    "src": "node_modules/dexie-export-import/dist/dexie-export-import.mjs",
-    "isDynamicEntry": true,
-    "imports": [
-      "_Project.O-O5NYNx.js"
-    ]
+    "src": "src/lib/dixie-export-import/dexie-export-import.js",
+    "isDynamicEntry": true
   }
 }

@@ -8,7 +8,8 @@
   // import {importDB, exportDB, importInto, peakImportFile} from "dexie-export-import";
 
   onMount(async ()=>{
-    await import('dexie-export-import')
+    // await import('dexie-export-import')
+    await import('../../lib/dixie-export-import/dexie-export-import')
   })
 
   let projects = getList('projects', '', 'Name') //liveQuery(() => db.projects.toArray())

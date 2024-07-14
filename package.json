@@ -21,10 +21,12 @@
 		"vite-plugin-pwa": "^0.16.4"
 	},
 	"type": "module",
+	"trashed-dependencies":{
+		"dexie-export-import": "^4.1.2"
+	},
 	"dependencies": {
 		"@sveltejs/adapter-static": "^3.0.2",
 		"dexie": "^4.0.7",
-		"dexie-export-import": "^4.1.2",
 		"downloadjs": "^1.4.7",
 		"dexie-relationships":"1.2.11",
 		"workbox-precaching": "^7.1.0"
