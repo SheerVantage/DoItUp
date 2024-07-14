@@ -12,7 +12,7 @@
   }
 
 </script>
-
+<div class = "flex"><span>DoItUp:<a class = "ml-auto bg-blue-300" href = "./projects">Projects</a></span></div>
 <div class = "p-6 grid gap-4">
     <!-- <span class = "flex gap-6 p-4"> -->
     {#each projects || [] as data}
