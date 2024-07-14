@@ -22,13 +22,13 @@
 	},
 	"type": "module",
 	"trashed-dependencies":{
+		"dexie-relationships":"1.2.11",
 		"dexie-export-import": "^4.1.2"
 	},
 	"dependencies": {
 		"@sveltejs/adapter-static": "^3.0.2",
 		"dexie": "^4.0.7",
 		"downloadjs": "^1.4.7",
-		"dexie-relationships":"1.2.11",
 		"workbox-precaching": "^7.1.0"
 	}
 }
