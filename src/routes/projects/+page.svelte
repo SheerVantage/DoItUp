@@ -41,9 +41,9 @@
 </script>
 
 
-<div class = "p-3 flex gap-1 pc-1">
-  <button class = "bg-green-200" on:click = {addProject}>Create Project</button>
-  <button class = "bg-green-200 ml-auto" on:click = {backup}>Backup</button>
+<div class = "rounded bg-gray-200 p-3 flex gap-1 pc-1">
+  <button class = "bg-green-300 px-2" on:click = {addProject}>Create Project</button>
+  <button class = "bg-green-200 px-2 ml-auto" on:click = {backup}>Backup</button>
   <!-- <button class = "bg-green-200" on:click = {restore}>Restore</button> -->
   <input type="file" on:change = {restore}>
 </div>
