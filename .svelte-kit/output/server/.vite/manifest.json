@@ -5,33 +5,57 @@
     "src": ".svelte-kit/generated/server/internal.js",
     "isEntry": true,
     "imports": [
-      "_internal.js"
+      "_internal.js",
+      "_paths.js"
     ]
   },
-  "_Project.js": {
-    "file": "chunks/Project.js",
-    "name": "Project",
+  "_Header.js": {
+    "file": "chunks/Header.js",
+    "name": "Header",
     "imports": [
-      "_ssr.js"
+      "_ssr.js",
+      "_index.js",
+      "_stores.js",
+      "_paths.js"
     ],
     "css": [
-      "_app/immutable/assets/Project.DlXdewRa.css"
+      "_app/immutable/assets/Header.NtAPOz5K.css"
     ]
   },
   "_exports.js": {
     "file": "chunks/exports.js",
     "name": "exports"
   },
-  "_internal.js": {
-    "file": "chunks/internal.js",
-    "name": "internal",
+  "_index.js": {
+    "file": "chunks/index.js",
+    "name": "index",
     "imports": [
       "_ssr.js"
     ]
   },
+  "_internal.js": {
+    "file": "chunks/internal.js",
+    "name": "internal",
+    "imports": [
+      "_ssr.js",
+      "_paths.js"
+    ]
+  },
+  "_paths.js": {
+    "file": "chunks/paths.js",
+    "name": "paths"
+  },
   "_ssr.js": {
     "file": "chunks/ssr.js",
     "name": "ssr"
+  },
+  "_stores.js": {
+    "file": "chunks/stores.js",
+    "name": "stores",
+    "imports": [
+      "_ssr.js",
+      "_exports.js"
+    ]
   },
   "node_modules/@sveltejs/kit/src/runtime/components/error.svelte": {
     "file": "entries/fallbacks/error.svelte.js",
@@ -40,7 +64,7 @@
     "isEntry": true,
     "imports": [
       "_ssr.js",
-      "_exports.js"
+      "_stores.js"
     ]
   },
   "node_modules/@sveltejs/kit/src/runtime/server/index.js": {
@@ -49,9 +73,10 @@
     "src": "node_modules/@sveltejs/kit/src/runtime/server/index.js",
     "isEntry": true,
     "imports": [
-      "_internal.js",
+      "_index.js",
+      "_paths.js",
       "_exports.js",
-      "_ssr.js"
+      "_internal.js"
     ]
   },
   "src/routes/+layout.svelte": {
@@ -63,7 +88,7 @@
       "_ssr.js"
     ],
     "css": [
-      "_app/immutable/assets/_layout.DqQOMiGp.css"
+      "_app/immutable/assets/_layout.CsuFg_RC.css"
     ]
   },
   "src/routes/+page.js": {
@@ -79,10 +104,23 @@
     "isEntry": true,
     "imports": [
       "_ssr.js",
-      "_Project.js"
-    ],
-    "css": [
-      "_app/immutable/assets/_page.C7VvCO32.css"
+      "_Header.js"
+    ]
+  },
+  "src/routes/profile/+page.js": {
+    "file": "entries/pages/profile/_page.js",
+    "name": "entries/pages/profile/_page",
+    "src": "src/routes/profile/+page.js",
+    "isEntry": true
+  },
+  "src/routes/profile/+page.svelte": {
+    "file": "entries/pages/profile/_page.svelte.js",
+    "name": "entries/pages/profile/_page.svelte",
+    "src": "src/routes/profile/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_Header.js"
     ]
   },
   "src/routes/projects/+page.js": {
@@ -98,10 +136,7 @@
     "isEntry": true,
     "imports": [
       "_ssr.js",
-      "_Project.js"
-    ],
-    "css": [
-      "_app/immutable/assets/_page.C7VvCO32.css"
+      "_Header.js"
     ]
   }
 }

@@ -1,131 +1,154 @@
 {
   ".svelte-kit/generated/client-optimized/app.js": {
-    "file": "_app/immutable/entry/app.hGGe1sRX.js",
+    "file": "_app/immutable/entry/app.B_5VSGld.js",
     "name": "entry/app",
     "src": ".svelte-kit/generated/client-optimized/app.js",
     "isEntry": true,
     "imports": [
       "_preload-helper.D6kgxu3v.js",
-      "_scheduler.BRlKLB1Y.js",
-      "_index.B98PtPql.js"
+      "_scheduler.C93KaQKa.js",
+      "_index.CHNZYlRI.js"
     ],
     "dynamicImports": [
       ".svelte-kit/generated/client-optimized/nodes/0.js",
       ".svelte-kit/generated/client-optimized/nodes/1.js",
       ".svelte-kit/generated/client-optimized/nodes/2.js",
-      ".svelte-kit/generated/client-optimized/nodes/3.js"
+      ".svelte-kit/generated/client-optimized/nodes/3.js",
+      ".svelte-kit/generated/client-optimized/nodes/4.js"
     ]
   },
   ".svelte-kit/generated/client-optimized/nodes/0.js": {
-    "file": "_app/immutable/nodes/0.B2Pt1jB8.js",
+    "file": "_app/immutable/nodes/0.C-dL9M89.js",
     "name": "nodes/0",
     "src": ".svelte-kit/generated/client-optimized/nodes/0.js",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_scheduler.BRlKLB1Y.js",
-      "_index.B98PtPql.js"
+      "_scheduler.C93KaQKa.js",
+      "_index.CHNZYlRI.js"
     ],
     "css": [
-      "_app/immutable/assets/0.DqQOMiGp.css"
+      "_app/immutable/assets/0.CsuFg_RC.css"
     ]
   },
   ".svelte-kit/generated/client-optimized/nodes/1.js": {
-    "file": "_app/immutable/nodes/1.SrZdlLa4.js",
+    "file": "_app/immutable/nodes/1.DWRxC4MK.js",
     "name": "nodes/1",
     "src": ".svelte-kit/generated/client-optimized/nodes/1.js",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_scheduler.BRlKLB1Y.js",
-      "_index.B98PtPql.js",
-      "_entry.Bq3ZC-Kp.js"
+      "_scheduler.C93KaQKa.js",
+      "_index.CHNZYlRI.js",
+      "_stores.Ctbm4BWb.js"
     ]
   },
   ".svelte-kit/generated/client-optimized/nodes/2.js": {
-    "file": "_app/immutable/nodes/2.Cb4g0eiI.js",
+    "file": "_app/immutable/nodes/2.CVseZMx_.js",
     "name": "nodes/2",
     "src": ".svelte-kit/generated/client-optimized/nodes/2.js",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_scheduler.BRlKLB1Y.js",
-      "_index.B98PtPql.js",
-      "_Project.DwnrKChE.js"
-    ],
-    "css": [
-      "_app/immutable/assets/2.C7VvCO32.css"
+      "_scheduler.C93KaQKa.js",
+      "_index.CHNZYlRI.js",
+      "_Header.DbhA24Mx.js"
     ]
   },
   ".svelte-kit/generated/client-optimized/nodes/3.js": {
-    "file": "_app/immutable/nodes/3.BpPajg1t.js",
+    "file": "_app/immutable/nodes/3.DkSABgKP.js",
     "name": "nodes/3",
     "src": ".svelte-kit/generated/client-optimized/nodes/3.js",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_preload-helper.D6kgxu3v.js",
-      "_scheduler.BRlKLB1Y.js",
-      "_index.B98PtPql.js",
-      "_Project.DwnrKChE.js"
+      "_scheduler.C93KaQKa.js",
+      "_index.CHNZYlRI.js",
+      "_Header.DbhA24Mx.js"
     ],
     "dynamicImports": [
-      "src/lib/dixie-export-import/dexie-export-import.js"
-    ],
-    "css": [
-      "_app/immutable/assets/2.C7VvCO32.css"
+      "src/lib/dixie-export-import/dexie-export-import.mjs"
     ]
   },
-  "_Project.!~{00c}~.js": {
-    "file": "_app/immutable/assets/Project.DlXdewRa.css",
-    "src": "_Project.!~{00c}~.js"
-  },
-  "_Project.DwnrKChE.js": {
-    "file": "_app/immutable/chunks/Project.DwnrKChE.js",
-    "name": "Project",
+  ".svelte-kit/generated/client-optimized/nodes/4.js": {
+    "file": "_app/immutable/nodes/4.DkSABgKP.js",
+    "name": "nodes/4",
+    "src": ".svelte-kit/generated/client-optimized/nodes/4.js",
+    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
-      "_scheduler.BRlKLB1Y.js",
-      "_index.B98PtPql.js"
+      "_preload-helper.D6kgxu3v.js",
+      "_scheduler.C93KaQKa.js",
+      "_index.CHNZYlRI.js",
+      "_Header.DbhA24Mx.js"
     ],
-    "css": [
-      "_app/immutable/assets/Project.DlXdewRa.css"
+    "dynamicImports": [
+      "src/lib/dixie-export-import/dexie-export-import.mjs"
     ]
   },
-  "_entry.Bq3ZC-Kp.js": {
-    "file": "_app/immutable/chunks/entry.Bq3ZC-Kp.js",
+  "_Header.!~{00e}~.js": {
+    "file": "_app/immutable/assets/Header.NtAPOz5K.css",
+    "src": "_Header.!~{00e}~.js"
+  },
+  "_Header.DbhA24Mx.js": {
+    "file": "_app/immutable/chunks/Header.DbhA24Mx.js",
+    "name": "Header",
+    "imports": [
+      "_scheduler.C93KaQKa.js",
+      "_index.CHNZYlRI.js",
+      "_entry.CdBLqTaw.js",
+      "_stores.Ctbm4BWb.js"
+    ],
+    "css": [
+      "_app/immutable/assets/Header.NtAPOz5K.css"
+    ]
+  },
+  "_entry.CdBLqTaw.js": {
+    "file": "_app/immutable/chunks/entry.CdBLqTaw.js",
     "name": "entry",
     "imports": [
-      "_scheduler.BRlKLB1Y.js"
+      "_scheduler.C93KaQKa.js"
     ]
   },
-  "_index.B98PtPql.js": {
-    "file": "_app/immutable/chunks/index.B98PtPql.js",
+  "_index.CHNZYlRI.js": {
+    "file": "_app/immutable/chunks/index.CHNZYlRI.js",
     "name": "index",
     "imports": [
-      "_scheduler.BRlKLB1Y.js"
+      "_scheduler.C93KaQKa.js"
     ]
   },
   "_preload-helper.D6kgxu3v.js": {
     "file": "_app/immutable/chunks/preload-helper.D6kgxu3v.js",
     "name": "preload-helper"
   },
-  "_scheduler.BRlKLB1Y.js": {
-    "file": "_app/immutable/chunks/scheduler.BRlKLB1Y.js",
+  "_scheduler.C93KaQKa.js": {
+    "file": "_app/immutable/chunks/scheduler.C93KaQKa.js",
     "name": "scheduler"
   },
+  "_stores.Ctbm4BWb.js": {
+    "file": "_app/immutable/chunks/stores.Ctbm4BWb.js",
+    "name": "stores",
+    "imports": [
+      "_entry.CdBLqTaw.js"
+    ]
+  },
   "node_modules/@sveltejs/kit/src/runtime/client/entry.js": {
-    "file": "_app/immutable/entry/start.BAUzWV5j.js",
+    "file": "_app/immutable/entry/start.ColAt3dU.js",
     "name": "entry/start",
     "src": "node_modules/@sveltejs/kit/src/runtime/client/entry.js",
     "isEntry": true,
     "imports": [
-      "_entry.Bq3ZC-Kp.js"
+      "_entry.CdBLqTaw.js"
     ]
   },
-  "src/lib/dixie-export-import/dexie-export-import.js": {
-    "file": "_app/immutable/chunks/dexie-export-import.BG74iNeT.js",
+  "src/lib/dixie-export-import/dexie-export-import.mjs": {
+    "file": "_app/immutable/chunks/dexie-export-import.DI4S6_YP.js",
     "name": "dexie-export-import",
-    "src": "src/lib/dixie-export-import/dexie-export-import.js",
-    "isDynamicEntry": true
+    "src": "src/lib/dixie-export-import/dexie-export-import.mjs",
+    "isDynamicEntry": true,
+    "imports": [
+      "_Header.DbhA24Mx.js"
+    ]
   }
 }
