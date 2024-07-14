@@ -1,0 +1,4 @@
+Pointes to poinder
+- sql table joins
+- support for CRUD operations
+- performance

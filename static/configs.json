@@ -1,0 +1,5 @@
+{
+	"server":"http://localhost/perfina/data-web.php",
+	"storage":"local",
+	"links":{"home":["./order.html"], "order":["./index.html"]}
+}
