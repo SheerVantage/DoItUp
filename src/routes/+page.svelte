@@ -1,10 +1,12 @@
 <script>
   import Project from '../components/Project.svelte'
+	import Header  from '../components/Header.svelte'
   import { db, getList } from "../lib/db";
+  import { title } from "../lib/store";
 
   let tasks = getList('tasks', {Current:true})
   $: if($tasks) loadProjects()
-
+  $title = 'Current Tasks'
   let projects = []
   async function loadProjects(){
     let projectIDs = $tasks.filter(item => item.Current).map(item=>item.Project_ID);
@@ -12,16 +14,16 @@
   }
 
 </script>
-<div class = "flex"><span>DoItUp:<a class = "ml-auto bg-blue-300" href = "./projects">Projects</a></span></div>
+
+<Header caption = "Do It Up" logo = {"/favicon.svg"} ><a class = "px-1 ml-auto bg-blue-300" href = "./projects">View All Projects ></a></Header>
+<!-- <div class = "w-full flex p-2 bg-gray-300"><span>DoItUp:</span><a class = "px-1 ml-auto bg-blue-300" href = "./projects">View All Projects ></a></div> -->
 <div class = "p-6 grid gap-4">
     <!-- <span class = "flex gap-6 p-4"> -->
     {#each projects || [] as data}
-      <Project mini = {false} {data} conditions = {{Current:true}}/>
+      <Project mini = {true} {data} conditions = {{Current:true}}/>
     {/each}
     <!-- </span> -->
 </div>
 
 <style>
-  .grid { display:grid; grid-template-columns:repeat( auto-fit, minmax(350px, 1fr)); }
-  /* .pc-1 > * {padding: 0.5rem 1rem;} */
 </style>

@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.pc-1 > * {padding: 0.5rem 1rem;}
+.grid { display:grid; grid-template-columns:repeat( auto-fit, minmax(350px, 1fr)); }
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(31,33,58,.22)
+}
+
+::-webkit-scrollbar-track,::-webkit-scrollbar-track {
+    background-color: rgba(245,245,245,.03)
+}
+
+::-webkit-scrollbar,::-webkit-scrollbar {
+    width: 6px !important;
+    height: 4px !important
+}
+
+::-webkit-scrollbar-thumb,::-webkit-scrollbar-thumb {
+    width: 6px !important;
+    background-color: #6595c2;
+    border: 0 solid #555;
+    border-radius: 4px
+}

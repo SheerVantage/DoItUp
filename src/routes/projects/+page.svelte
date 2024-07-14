@@ -1,8 +1,10 @@
 <script>
   // import  presistentStore from "$libs/presistent-store";
   import Project from '../../components/Project.svelte'
+	import Header from '../../components/Header.svelte'
   // import Task from "../../components/Task.svelte";
   import { db, getList, backup, restore } from "../../lib/db";
+  import { title } from "../../lib/store";
   // import download from 'downloadjs'
   import {onMount} from 'svelte'
   // import {importDB, exportDB, importInto, peakImportFile} from "dexie-export-import";
@@ -10,6 +12,7 @@
   onMount(async ()=>{
     // await import('dexie-export-import')
     await import('../../lib/dixie-export-import/dexie-export-import')
+    $title = "All or most Projects and Tasks"
   })
 
   let projects = getList('projects', '', 'Name') //liveQuery(() => db.projects.toArray())
@@ -41,18 +44,19 @@
 </script>
 
 
-<div class = "rounded bg-gray-200 p-3 flex gap-1 pc-1">
+<Header caption = "Do It Up" logo = {"/favicon.svg"} bgColor = 'bg-blue-200'>
+<svelte:fragment slot = "tools" >
   <button class = "bg-green-300 px-2" on:click = {addProject}>Create Project</button>
-  <button class = "bg-green-200 px-2 ml-auto" on:click = {backup}>Backup</button>
+  <button class = "bg-blue-200 px-2 ml-auto" on:click = {backup}>Backup</button>
   <!-- <button class = "bg-green-200" on:click = {restore}>Restore</button> -->
-  <input type="file" on:change = {restore}>
-</div>
+  <span class = "flex items-center mr-2 relative cursor-pointer bg-green-500 px-2">Restore<input class = "absolute" style = "left:0; top:0; z-index:2; opacity:0; width:100%; height:100%;" type="file" on:change = {restore}></span>
+</svelte:fragment>
+</Header>
 
 <div class = "p-3 grid gap-2">{#each $projects || [] as data}
     <Project {data} {removeProject} />
 {/each}</div>
 
 <style>
-  .grid { display:grid; grid-template-columns:repeat( auto-fit, minmax(350px, 1fr)); }
-  /* .pc-1 > * {padding: 0.5rem 1rem;} */
+  /* .grid { display:grid; grid-template-columns:repeat( auto-fit, minmax(350px, 1fr)); } */
 </style>

@@ -30,8 +30,8 @@
             <input bind:this = {nameEl} type="text" class = "flex-grow bg-blue-200s p-2 w-full" bind:value = {data.Name} on:blur = {e=>edit(false)}
                 on:keypress = {e=>{e.keyCode == 13 && edit(false)}} />
         {:else}
-            <div aria-hidden="true" class = "p-1" on:click = {()=>edit(true)}>
-                <span class:text-xl = {!mini} class = "p-1">{data.Name} {($tasks || []).length}</span>
+            <div aria-hidden="true" class = "p-1s" on:click = {()=>edit(true)}>
+                <span class:text-xl = {!mini} class = "p-1 flex items-center">{data.Name} <span class = "ml-auto text-sm text-gray-500">[ has {($tasks || []).length} tasks ]</span></span>
                 <!-- <button on:click={createTask}>+</button> -->
             </div>
         {/if}
@@ -41,14 +41,14 @@
     <span>{data.Status || ''}</span>
     <span>{data.Date_Start || ''}</span>
     <span>{data.Date_End || ''}</span>
+    <button class = "remover" on:click={e=>{e.stopPropagation(); removeProject(data) }}>x</button>
+    {/if}
     <ul class = "task-list p-1">
         {#each $tasks || [] as task}<li>
             <Task data = {task}/>
         </li>{/each}
-        <li class = "new-task"><Task  data = {{Name:'', Project_ID:data.ID}}/></li>
+        {#if !mini }<li class = "new-task"><Task  data = {{Name:'', Project_ID:data.ID}}/></li>{/if}
     </ul>
-    <button class = "remover" on:click={e=>{e.stopPropagation(); removeProject(data) }}>x</button>
-    {/if}
 </div>
 
 <style>
@@ -57,5 +57,6 @@
     span:empty {display: none;}
     .remover {position: absolute; right: 10px; top: 0;}
     .new-task:not(:focus-within) {visibility: hidden;}
+    .task-list {overflow: auto; max-height: 10rem;}
     .task-list:hover .new-task {visibility: visible;}
 </style>

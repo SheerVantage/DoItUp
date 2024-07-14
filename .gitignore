@@ -1,4 +1,8 @@
 build/
 backups/
 node_modules/
+/node_modules
+node_modules
+/build
+/.svelte-kit
 .svelte-kit/

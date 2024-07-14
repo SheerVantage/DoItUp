@@ -46,7 +46,7 @@
 
 </script>
 <div>
-    <div class = "flex flex-col">
+    <div class = "flex flex-col hover:bg-blue-200">
         <div class = "flex gap-2 items-centers align-top">
         {#if data.ID}<span><input class = "mt-2" type="checkbox" bind:checked = {data.Done} on:click={complete}/></span>{/if}
         {#if data.editing}
@@ -54,7 +54,7 @@
                 on:keypress={(e)=>{ e.keyCode == 13 && edit(false)}}/>
             
         {:else}
-            <div aria-hidden="true" class:text-gray-400 = {data.Name == ''} class:text-red-500 = {data.Current} class = "task-title flex relative w-full hover:bg-blue-200 items-center" class:text-green-600 = {data.Done} on:click = {()=>edit(true)}>
+            <div aria-hidden="true" class:text-gray-400 = {data.Name == ''} class:text-red-500 = {data.Current} class = "task-title flex relative w-full items-center" class:text-green-600 = {data.Done} on:click = {()=>edit(true)}>
                 {data.Name || 'add new task'}
                 {#if data.ID}<div class = "actions bg-blue-200 px-2 py-1 flex gap-3 ml-2 rounded">
                     <button on:click|stopPropagation = {e=>removeTask(data)}>✖</button>
