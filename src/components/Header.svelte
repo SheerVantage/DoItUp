@@ -78,11 +78,14 @@
  <!-- {@debug history} -->
 	<span class = "logo flex gap-1 place-items-center">
 		<!-- {hasPrevious} -->
-		{#if hasPrevious}<div class = "pr-1 cursor-pointer" on:click = {goBack} on:keyown={()=>{}} aria-hidden="true" >🡠&nbsp;</div>{/if}
-		{#if logo}<img class = "mr-2" style = "height:20px;" src={base+($configs.logo || logo)} alt="">{/if}
-		<span class = "text-2xl flex font-bold"> {caption} </span>
+		<span class = "flex rounded-2xl px-1" style = "background: rgba( 0, 0, 0, 0.3)">
+			{#if hasPrevious}<div class = "pr-1 cursor-pointer" on:click = {goBack} on:keyown={()=>{}} aria-hidden="true" >🡠&nbsp;</div>{/if}
+			{#if hasNext}<div class = "pr-1 cursor-pointer" on:click = {goForward} on:keyown={()=>{}} aria-hidden="true" >&nbsp;🡢</div>{/if}
+		</span>
+		{#if logo}<img class = "mr-1" style = "height:20px;" src={base+($configs.logo || logo)} alt="">{/if}
+		<span class = "md:font-bold sm:text-sm flex">{caption}</span>
 		{#if caption && $title}: {/if}
-		<span class = "ml-1 text-2xl text-blue-700 flex"> {$title} </span>
+		<span class = "ml-1s sm:text-sm text-blue-700 flex"> {$title} </span>
 	</span>
 	
 	<div flex class = "ml-auto flex">
@@ -96,6 +99,7 @@
 			<div slot = "header" class = "p-2 bg-gradient-to-tr from-indigo-300 to-yellow-200 p-4 py-12 flex flex-col items-start gap-2">
 				<span class = "rounded bg-white p-6"></span>
 				Navigation Bar
+				<span class = "flex gap-2" ><slot name = "drawer"/></span>
 			</div>
 			<!-- {@debug $links} -->
 			<ul class = "min-h-24 navigation-menu flex flex-col gap-2">
@@ -108,7 +112,6 @@
 		</Drawer>
 		<!-- <div class = "">🡢</div> -->
 		<!-- {hasNext} -->
-		{#if hasNext}<div class = "pr-1 cursor-pointer" on:click = {goForward} on:keyown={()=>{}} aria-hidden="true" >&nbsp;🡢</div>{/if}
 	</div>
 
 </section>
@@ -124,5 +127,6 @@
 	.cursor-pointer {cursor:pointer;}
 	.text-blue-700 {color:#1D4ED8;}
 	.font-bold {font-weight: 600;}
+
 
 </style>

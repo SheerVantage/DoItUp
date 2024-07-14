@@ -15,7 +15,9 @@
 
 </script>
 
-<Header caption = "Do It Up" logo = {"/favicon.svg"} ><a class = "px-1 ml-auto bg-blue-300" href = "./projects">View All Projects ></a></Header>
+<Header caption = "" logo = {"/favicon.svg"} >
+  <a class = "px-1 ml-auto bg-blue-300" href = "./projects">All Projects ></a>
+</Header>
 <!-- <div class = "w-full flex p-2 bg-gray-300"><span>DoItUp:</span><a class = "px-1 ml-auto bg-blue-300" href = "./projects">View All Projects ></a></div> -->
 <div class = "p-6 grid gap-4">
     <!-- <span class = "flex gap-6 p-4"> -->

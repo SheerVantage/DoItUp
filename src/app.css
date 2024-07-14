@@ -14,13 +14,14 @@
 }
 
 ::-webkit-scrollbar,::-webkit-scrollbar {
-    width: 6px !important;
+    width: 4px !important;
     height: 4px !important
 }
 
 ::-webkit-scrollbar-thumb,::-webkit-scrollbar-thumb {
-    width: 6px !important;
+    width: 4px !important;
     background-color: #6595c2;
     border: 0 solid #555;
     border-radius: 4px
 }
+

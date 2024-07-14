@@ -12,7 +12,7 @@
   onMount(async ()=>{
     // await import('dexie-export-import')
     await import('../../lib/dixie-export-import/dexie-export-import')
-    $title = "All or most Projects and Tasks"
+    $title = "All Projects"
   })
 
   let projects = getList('projects', '', 'Name') //liveQuery(() => db.projects.toArray())
@@ -43,13 +43,16 @@
   
 </script>
 
-<Header caption = "Do It Up" logo = {"/favicon.svg"} bgColor = 'bg-blue-200'>
+<Header caption = "" logo = {"/favicon.svg"} bgColor = 'bg-blue-200'>
 <svelte:fragment slot = "tools" >
-  <button class = "bg-green-300 px-2" on:click = {addProject}>Create Project</button>
-  <button class = "bg-blue-200 px-2 ml-auto" on:click = {backup}>Backup</button>
-  <!-- <button class = "bg-green-200" on:click = {restore}>Restore</button> -->
-  <span class = "flex items-center mr-2 relative cursor-pointer bg-green-500 px-2">Restore<input class = "absolute" style = "left:0; top:0; z-index:2; opacity:0; width:100%; height:100%;" type="file" on:change = {restore}></span>
+  <button class = "bg-green-300 px-2" on:click = {addProject}>Create</button>
 </svelte:fragment>
+<svelte:fragment slot = "drawer" >
+<button class = "bg-blue-200 px-2 ml-auto" on:click = {backup}>Backup</button>
+<!-- <button class = "bg-green-200" on:click = {restore}>Restore</button> -->
+<span class = "flex items-center mr-2 relative cursor-pointer bg-green-500 px-2">Restore<input class = "absolute cursor-pointer" style = "left:0; top:0; z-index:2; opacity:0; width:100%; height:100%;" type="file" on:change = {restore}></span>
+</svelte:fragment>
+
 </Header>
 
 <div class = "p-3 grid gap-2">{#each $projects || [] as data}
