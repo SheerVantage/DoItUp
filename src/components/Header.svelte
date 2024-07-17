@@ -78,11 +78,11 @@
  <!-- {@debug history} -->
 	<span class = "logo flex gap-1 place-items-center">
 		<!-- {hasPrevious} -->
-		<span class = "flex rounded-2xl px-1" style = "background: rgba( 0, 0, 0, 0.3)">
+		<span class = "flex rounded-lg px-1 mr-1" style = "background: rgba( 255, 255, 255, 0.3)">
 			{#if hasPrevious}<div class = "pr-1 cursor-pointer" on:click = {goBack} on:keyown={()=>{}} aria-hidden="true" >🡠&nbsp;</div>{/if}
 			{#if hasNext}<div class = "pr-1 cursor-pointer" on:click = {goForward} on:keyown={()=>{}} aria-hidden="true" >&nbsp;🡢</div>{/if}
 		</span>
-		{#if logo}<img class = "mr-1" style = "height:20px;" src={base+($configs.logo || logo)} alt="">{/if}
+		{#if logo}<img class = "mr-0" style = "height:20px;" src={base+($configs.logo || logo)} alt="">{/if}
 		<span class = "md:font-bold sm:text-sm flex">{caption}</span>
 		{#if caption && $title}: {/if}
 		<span class = "ml-1s sm:text-sm text-blue-700 flex"> {$title} </span>

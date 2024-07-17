@@ -10,7 +10,8 @@ export let db = new Dexie('DoItUps');
 db.version(1).stores({
   projects: '++ID, Name, Duration, Serial',
   // tasks: '++ID, Name, Duration, Project_ID -> projects.ID, Task_ID, Done, Serial, Archived, Deferred, Current', // Primary key and indexed props
-  tasks: '++ID, Name, Duration, Project_ID, Task_ID, Serial, Current, Archived, Deferred, Done', // Primary key and indexed props
+  tasks: '++ID, Name, Duration, Project_ID, DateTime_Start, DateTime_End, Task_ID,  Serial, Current, Archived, Deferred, Doing, Done', // Primary key and indexed props
+  sessions: '++ID, Duration, Task_ID, DateTime_Start, DateTime_End, Progress, Serial, Current, Deferred, Doing, Done'
 });
 
 export function getList( table, conditions = {}, orders = {} ){

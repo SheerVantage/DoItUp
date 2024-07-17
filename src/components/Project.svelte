@@ -3,7 +3,7 @@
     import Task from '../components/Task.svelte'
     import { getList, insert, remove, update } from "../lib/db"
 
-    export let data, mini, conditions = {}, removeProject = '' //, updateProjectList, Name = 'Project', Description = '', Status = '', Date_Start = '', Date_End = '', Duration = 0
+    export let data, mini = false, conditions = {}, removeProject = '' //, updateProjectList, Name = 'Project', Description = '', Status = '', Date_Start = '', Date_End = '', Duration = 0
     let nameEl, tasks
     conditions['Project_ID'] = data.ID
     tasks = getList('tasks', conditions)
