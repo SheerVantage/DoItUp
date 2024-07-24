@@ -1,7 +1,8 @@
 
 <div fill class="tab-control {classes}" {name}>
-	<div class="tabs">
+	<div class="tabs flex">
 		<slot isTitle={true} isContent={false}/>
+		<span class = "tab-button ml-auto"><slot name = 'tools'/></span>
 	</div>
 	<div class="tab-content">
 		<slot isTitle={false} isContent={true}/>
@@ -38,4 +39,6 @@
 	.tab-control { min-height:100%;  }
 	.tabs {padding-left:1rem; border-bottom: 1px solid silver; display: flex; gap:1rem; height:40px;}
 	.tab-content { width: 100%; height: calc(100% - 40px); padding: 0.5rem;}
+	:global(.tab-button) {display: flex; place-items: center; padding-inline: 0.5rem;}
+
 </style>

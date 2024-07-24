@@ -25,7 +25,7 @@
 
 <style>
 	.tab-container {display: block; height: 100%; overflow:auto;}
-	.tab-button {display: flex; place-items: center; padding-inline: 0.5rem;}
+	/* .tab-button {display: flex; place-items: center; padding-inline: 0.5rem;} */
 	/* .tab { height:100%; border: none; padding: 0 8px; cursor: pointer; background: none; margin: 0; cursor: pointer; border-bottom-left-radius: 0; border-bottom-right-radius: 0; } */
 	.tab-button.selected { background: whitesmoke; border: 1px solid lightgray; border-bottom-width: 0px; cursor: default; }
 </style>

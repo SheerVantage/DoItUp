@@ -4,7 +4,7 @@
 
 <style>
     :global(.app-body) {
-        display: grid; grid-template-rows: 40px 1fr; height: 100%;
+        display: grid; grid-template-rows: 40px 1fr; height: 100vh;
     }
-    :global(.add-body > *:nth-child(2)){ height:100%;  overflow: auto;}
+    /* :global(.add-body > *:nth-child(2)){ height:100%;  overflow: auto;} */
 </style>

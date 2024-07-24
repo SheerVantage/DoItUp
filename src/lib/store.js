@@ -57,6 +57,7 @@ export function getItem( key ){
 }
 
 export const task = writable(undefined)
+export const currentTasks = writable([])
 export const order = writable({})
 export const orders = writable([])
 export const links = writable([])

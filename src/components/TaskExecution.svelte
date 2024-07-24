@@ -5,7 +5,7 @@
     import Session from '../components/Session.svelte'
     import { getList, insert, remove, update } from "../lib/db"
     let sid, session, sessions = getList('sessions', {Task_ID:$task.ID, DateTime_End:undefined})
-    $: if($task.ID & $sessions){
+    $: if($task?.ID & $sessions){
         session = $sessions[$sessions.length - 1]
     }
 

@@ -1,0 +1,17 @@
+Task
+- Priority_ID
+- Date_Completion_Scheduled
+- Date_Completion_Actual
+
+Restore (will become import)
+- import items that don't already exist in the target database - check against Priority_ID
+- check sameness of items that exist in both the souce and target - compare values of DateTime_Created, and DateTime_Modified, if they dont match then compare other fields
+- when difference is found, allow
+    - keeping the existing one
+    - replacing with the imported one
+    - merging both visually/manually
+
+Check out the possibility of direct communication - app instance to app instance
+    - mobile instance <--> desktop instance of the same app (DoItUp, Perfina, etc)
+
+Export and Cleanup non-active and ancient tasks - archived, deferred, cancelled, completed/done, etc.

@@ -17,3 +17,10 @@ export function difference(start, end){
 	// debugger
 	return diff
 }
+
+export function toTime(ts = undefined){
+	// debugger
+	// return ts ? new Date(ts * 1e3).toISOString().slice(-13, -5) : ''
+	return ts ? new Date(ts * 1e3).toLocaleTimeString("en-US") : ''
+	return ts ? new Date(ts * 1000).toISOString().slice(0, 19).replace('T', ' ') : ''
+}

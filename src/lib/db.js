@@ -6,19 +6,50 @@ import download from 'downloadjs'
 
 // export const db = new Dexie('DoItUps', {addons: [relationships]});
 export let db = new Dexie('DoItUps');
-
-db.version(1).stores({
-  projects: '++ID, Name, Duration, Serial',
+let schema = {
+  projects: '++ID, Name, Duration, Serial, Project_Type_ID, Priority_ID',
+  features:'++ID, Name, Feature_Type_ID',
+  feature_types:'++ID, Name',
+  project_types:'++ID, Name, Recurrent, Period',
   // tasks: '++ID, Name, Duration, Project_ID -> projects.ID, Task_ID, Done, Serial, Archived, Deferred, Current', // Primary key and indexed props
-  tasks: '++ID, Name, Duration, Project_ID, DateTime_Start, DateTime_End, Task_ID,  Serial, Current, Archived, Deferred, Doing, Done', // Primary key and indexed props
-  sessions: '++ID, Duration, Task_ID, DateTime_Start, DateTime_End, Progress, Serial, Current, Deferred, Doing, Done'
-});
+  tasks: '++ID, Name, Duration, notes, Project_ID, Priority_ID, Task_Type_ID, DateTime_Start, DateTime_End, Task_ID,  Serial, Current, Archived, Deferred, Urgent, Doing, Done', // Primary key and indexed props
+  task_types:'++ID, Name', // UI Design, Bug Fixture, Support, Correspondence, Documentation
+  priorities:'++ID, Name, Color, Icon, BG',
+  sessions: '++ID, Duration, Task_ID, DateTime_Start, DateTime_End, Progress, Serial, Current, Deferred, Doing, Done',
+  notes: '++ID, Content, Task_ID, DateTime, Project_ID',
+  organizations:'++ID, Name, Type',
+  persons:'++ID, Name, Organization_ID',
+}
+db.version(1).stores(schema);
+
+function intialize(){
+
+  // insert('projects', {Name:'Daily Retuals', Project_Type_ID:1})
+  // insert('projects', {Name:'Social Activities', Project_Type_ID:1})
+  // insert('project_types', {Name:'Application', Recur:3})
+
+  // insert('project_types', {Name:'Web Site', Recur:false})
+  // insert('project_types', {Name:'Daily Retuals', Recur:'Daily'})
+  // insert('project_types', {Name:'Occational', Recur:'Sporadically'})
+
+  // insert('task_types', {Name:'Design / Development'})
+  // insert('task_types', {Name:'Communication'})
+  // insert('task_types', {Name:'Documentation'})
+
+}
+// intialize()
 
 export function getList( table, conditions = {}, orders = {} ){
   // debugger
   return liveQuery(() => db[table].filter((item)=>{
     return createFilters(item, conditions)
   }).toArray())
+}
+export async function getRecords( table, conditions = {}, orders = {} ){
+  // debugger
+  return await db[table].filter((item)=>{
+    return createFilters(item, conditions)
+  }).toArray()
 }
 
 function createFilters(item, conditions = undefined={}){
@@ -71,11 +102,7 @@ export async function restore(ev){
     // debugger
     await db.delete();
     db = new Dexie('DoItUps')
-    db.version(1).stores({
-      projects: '++ID, Name, Duration, Serial',
-      // tasks: '++ID, Name, Duration, Project_ID -> projects.ID, Task_ID, Done, Serial, Archived, Deferred, Current', // Primary key and indexed props
-      tasks: '++ID, Name, Duration, Project_ID, Task_ID, Serial, Current, Archived, Deferred, Done', // Primary key and indexed props
-    });
+    db.version(1).stores(schema);
     // debugger
     await db.import(file)
     console.log("Import complete");
