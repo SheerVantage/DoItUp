@@ -28,7 +28,7 @@
 		// 		dialog.close()
 		// 	}
 		// }
-		!sticky && dialog.addEventListener("click", closer)
+		// !sticky && dialog.addEventListener("click", closer)
 	}
 	function validate(){
 		message = ''
@@ -79,7 +79,7 @@
 	</button>
 	<dialog bind:this = {dialog} class = "cursor-default p-2 rounded-xl shadow-2xl drop-shadow-lg sidebar modal animate {size}">
 		{#if isOpen}
-	    <div transition:slide={{delay: 200, duration: 500}} class = "p-2 gap-2" style = "heights:48px; display:flex; place-items: center; background:whitesmoke;">
+	    <div transition:slide={{delay: 200, duration: 500}} class = "dialog-title p-2 gap-2" style = "heights:48px; display:flex; place-items: center;">
 	        <span class = "mr-2">{ caption || label || entity || 'Caption'}</span>
 			{#if callback}<button class = "p-1 bg-green-300" on:click = {executeCallback}>Execute</button>{/if}
 	        <slot class = "tools" name = "tools"></slot>
@@ -95,10 +95,12 @@
 </div>
 
 <style type="text/css">
+	.modal-dialog {background-color: transparent;}
+	.dialog-title {background-color: #ffffff36; backdrop-filter: blur(20px); }
 	.modal-dialog > button {height: 100%;}
 	.ml-auto {margin-left: auto;}
 	/* [p-1], .p-1 {padding: 1rem;} */
-	dialog { padding:0; width: 500px; height: 500px; border-radius: 8px; box-shadow: 0px 0.5px 1.4px #0000001a,0px 1.3px 3.8px rgba(0,0,0,.125),0px 3px 9px rgba(0,0,0,.135),0px 10px 30px rgba(0,0,0,.145); z-index: 10; margin-lefts: calc(var(--scrollbar-width, 0) * -0.5);}
+	dialog { background-color: #ffffff36; backdrop-filter: blur(24px); padding:0; width: 500px; height: 500px; border-radius: 8px; box-shadow: 0px 0.5px 1.4px #0000001a,0px 1.3px 3.8px rgba(0,0,0,.125),0px 3px 9px rgba(0,0,0,.135),0px 10px 30px rgba(0,0,0,.145); z-index: 10; margin-lefts: calc(var(--scrollbar-width, 0) * -0.5);}
 	dialog.medium { width: 80vw; height: auto; max-height: 85vh; }
 	dialog.large { width: 93vw; height: auto; max-height: 85vh; }
 	*, ::after, ::before { box-sizing: border-box; }

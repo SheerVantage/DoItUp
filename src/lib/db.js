@@ -7,12 +7,12 @@ import download from 'downloadjs'
 // export const db = new Dexie('DoItUps', {addons: [relationships]});
 export let db = new Dexie('DoItUps');
 let schema = {
-  projects: '++ID, Name, Duration, Serial, Project_Type_ID, Priority_ID',
+  projects: '++ID, Name, Duration, Serial, Project_Type_ID, Priority_ID, Deleted, Cancelled, Show_Archived, Show_Deleted, Show_Deferred, Show_Done',
   features:'++ID, Name, Feature_Type_ID',
   feature_types:'++ID, Name',
   project_types:'++ID, Name, Recurrent, Period',
   // tasks: '++ID, Name, Duration, Project_ID -> projects.ID, Task_ID, Done, Serial, Archived, Deferred, Current', // Primary key and indexed props
-  tasks: '++ID, Name, Duration, notes, Project_ID, Priority_ID, Task_Type_ID, DateTime_Start, DateTime_End, Task_ID,  Serial, Current, Archived, Deferred, Urgent, Doing, Done', // Primary key and indexed props
+  tasks: '++ID, Name, Duration, notes, Project_ID, Priority_ID, Task_Type_ID, DateTime_Created, DateTime_Start, DateTime_End, Task_ID,  Serial, Current, Archived, Deferred, Urgent, Doing, Done, Deleted, Cancelled', // Primary key and indexed props
   task_types:'++ID, Name', // UI Design, Bug Fixture, Support, Correspondence, Documentation
   priorities:'++ID, Name, Color, Icon, BG',
   sessions: '++ID, Duration, Task_ID, DateTime_Start, DateTime_End, Progress, Serial, Current, Deferred, Doing, Done',

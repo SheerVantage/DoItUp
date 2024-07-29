@@ -3,6 +3,8 @@
     import Task from '../components/Task.svelte'
     import { getList, insert, remove, update } from "../lib/db"
     import {formatter} from '../components/Formatter.svelte'
+    import { nowTS } from '../lib/utilities';
+    import Flag from './Flag.svelte';
 
     $: if($tasks){
         duration = $tasks.reduce((num, item)=>{
@@ -13,7 +15,9 @@
     export let data, mini = false, conditions = {}, removeProject = '' //, updateProjectList, Name = 'Project', Description = '', Status = '', Date_Start = '', Date_End = '', Duration = 0
     let nameEl, tasks, duration = 0, loaded
     conditions['Project_ID'] = data.ID
-    // conditions['Archived'] = false
+    // conditions['Archived'] = data.Show_Archived
+    // conditions['Deleted'] = data.Show_Deleted
+    conditions['Done'] = data.Show_Done
     tasks = getList('tasks', conditions)
     // debugger
     $: if(nameEl && data.editing) nameEl.focus()
@@ -32,15 +36,22 @@
     
 </script>
 
-<div class = "flex flex-col gap-1 p-3 pl-0 border-2 bg-blue-100 rounded-lg relative">
+<div class = "project flex flex-col gap-1 p-3 pl-0 border-2 bg-blue-100 rounded-lg relative">
+    {#if !mini}<div class = "filters">
+        <Flag bind:value = {data.Show_Archived} symbol = '📂' on:change = {()=>{update('projects', {ID:data.ID, Show_Archived:data.Show_Archived})}}/>
+        <Flag bind:value = {data.Show_Deleted} symbol = '⨯'}} on:change = {()=>{update('projects', {ID:data.ID, Show_Deleted:data.Show_Deleted})}} />
+        <Flag bind:value = {data.Show_Deferred} symbol = 'ⓘ'}} on:change = {()=>{update('projects', {ID:data.ID, Show_Deferred:data.Show_Deferred})}} />
+        <Flag bind:value = {data.Show_Done} symbol = '☑'}} on:change = {()=>{update('projects', {ID:data.ID, Show_Done:data.Show_Done})}} />
+    </div>{/if}
     <div class = "w-full pl-3">
         {#if data.editing}
             <input bind:this = {nameEl} type="text" class = "flex-grow bg-blue-200s p-2 w-full" bind:value = {data.Name} on:blur = {e=>edit(false)}
                 on:keypress = {e=>{e.keyCode == 13 && edit(false)}} />
         {:else}
             <div aria-hidden="true" class = "p-1s" on:click = {()=>edit(true)}>
-                <span class:text-xl = {!mini} class = "p-1 flex items-center">{data.Name}
-                    <span class = "ml-auto flex item-center text-xs text-gray-500">{($tasks || []).length} tasks<!--span class = "text-xxs ml-0.5">📋</!span-->, {formatter(duration, 'm2hm', true)}</span>
+                <span class:text-xl = {!mini} class = "p-1 flex items-center">
+                    {data.Name}
+                    <span type = "checkbox" class = "ml-auto flex item-center text-xs text-gray-500">{($tasks || []).length} tasks<!--span class = "text-xxs ml-0.5">📋</!span-->, {formatter(duration, 'm2hm', true)}</span>
                 </span>
                 <!-- <button on:click={createTask}>+</button> -->
             </div>
@@ -57,11 +68,14 @@
         {#each $tasks || [] as task}<li>
             <Task data = {task}/>
         </li>{/each}
-        {#if !mini }<li class = "new-task"><Task  data = {{Name:'', Project_ID:data.ID}}/></li>{/if}
+        {#if !mini }<li class = "new-task"><Task  data = {{Name:'', Project_ID:data.ID, Date_Created:nowTS()}}/></li>{/if}
     </ul>
 </div>
 
 <style>
+    .project {position: relative; }
+    .project:hover .filters {visibility: visible; top:0px; opacity: 0.8;}
+    .filters { box-shadow: 0 3px 10px -3px brown; border-radius: 0 0 5px 5px; transition: 0.3s opacity, 0.2s top; opacity: 0; visibility: hidden; position: absolute; top:-12px; left: 40%; display: inline-flex; gap:0.5rem; padding:0.1rem 0.3rem; background-color: antiquewhite;}
     :is(div, li) > button {visibility: hidden;}
     :is(div, li):hover > button {visibility: visible;}
     span:empty {display: none;}

@@ -15,7 +15,7 @@
             if(data.ID)
                 update('tasks', data)
             else if(data.Name != ''){
-                insert('tasks', {...data, Deferred:false, Archived:false, Done:false, Doing:false, Current:false})
+                insert('tasks', { DateTime_Created:nowTS(), Deferred:false, Archived:false, Done:false, Doing:false, Current:false, Deleted:false, Cancelled:false, ...data})
                 data.Name = ''
             }
         }
@@ -26,7 +26,8 @@
         }
     }
     function removeTask(task){
-        remove('tasks', task.ID)
+        // remove('tasks', task.ID)
+        update('tasks', {ID:task.ID, Deleted:!data.Deleted})
     }
     function start(data){
         let time = nowTS()
@@ -122,7 +123,7 @@
                 on:keypress = {(e)=>{ e.code == 'Enter' && edit(false, e)}}/>
             <input type = "number" class = "w-12 px-0.5" bind:value = {data.Duration} on:focus = {onFocus} on:blur = {onBlur} on:keypress = { e => { e.code == 'Enter' && edit(false, e)}} />
     {:else}
-        <div aria-hidden="true" class:bg-yellow-100 = {data.Urgent} class:text-gray-400 = {data.Name == ''} class:text-red-600 = {data.Current} class = "task-title hover:bg-blue-200 rounded flex flex-grow relative w-full items-center" class:text-green-600 = {data.Done} >
+        <div aria-hidden="true" class:bg-yellow-100 = {data.Urgent} class:text-gray-400 = {data.Name == ''} class:text-red-600 = {data.Current} class:deleted = {data.Deleted} class = "task-title hover:bg-blue-200 rounded flex flex-grow relative w-full items-center" class:text-green-600 = {data.Done} >
             <span aria-hidden="true" on:click = {()=>edit(true)} class:deferred = {data.Deferred} class:archived = {data.Archived} class = " flex-grow">
                 {data.Name || 'add new task'}
                 {#if data.notes }<span class = "rounded bg-blue-300 text-white text-xs px-1">{data.notes - 0 + 1}</span>{/if}
@@ -142,6 +143,7 @@
     input[type=checkbox]:hover {background: whitesmoke;}
     .task-title { min-height:32px; border:1px; padding:0 0.3rem;}
     .doing {background:pink;}
+    .deleted {text-decoration: line-through;}
     .archived {color: darkgray;}
     .deferred {color: gray;}
     .archived, .deferred {font-size: small;}
