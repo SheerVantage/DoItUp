@@ -4,7 +4,7 @@
 	import { fade, slide } from 'svelte/transition';
 	// export {fields as data}
 	export let init = undefined, fields = {Name:'ABCDEFGH', Project_ID:3}
-	export let caption = 'Caption: Modal Dalog', button_classes = '', label = 'Label: Modal Dialog', icon = '', size = 'large', callback = '', validator = undefined, entity = '', enabled = true, sticky = false
+	export let caption = 'Caption: Modal Dalog', classes = '', button_classes = '', label = 'Label: Modal Dialog', icon = '', size = 'large', callback = '', validator = undefined, entity = '', enabled = true, sticky = false
 	let dialog, isOpen = false, closer, message = '---'
     function open(){
 		init && init({ entity, label })
@@ -86,7 +86,7 @@
 		<!-- <span {fixed} on:click="{dispatchCloseEvent}" role="button" space = "here and there"> -->
 		<button on:click = {close} class = "ml-auto hover:bg-red-600 rounded-md p-1s px-1" style = "top:1rem; right: 1rem; ">✕</button>
 	    </div>
-	    <div transition:fade={{delay: 50, duration: 100}} class = "p-3 relative w-full visible flex flex-col" style = "display:flex; position:relative; width:100%; heights:calc( 100% - 48px - 1rem );">
+	    <div transition:fade={{delay: 50, duration: 100}} class = "{classes} p-3 relative w-full visible flex flex-col" style = "display:flex; position:relative; width:100%; heights:calc( 100% - 48px - 1rem );">
 			<div class = "absolute mx-auto bg-yellow-800 rounded" class:visible = { message != ''} style = "visibility:hidden; position:absolute; margin:auto; margin-left:48%; background:yellow;">{message}</div>
 	        <slot {fields}></slot>
 	    </div>

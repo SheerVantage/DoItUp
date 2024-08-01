@@ -17,7 +17,7 @@
     conditions['Project_ID'] = data.ID
     // conditions['Archived'] = data.Show_Archived
     // conditions['Deleted'] = data.Show_Deleted
-    conditions['Done'] = data.Show_Done
+    // conditions['Done'] = !!data.Show_Done
     tasks = getList('tasks', conditions)
     // debugger
     $: if(nameEl && data.editing) nameEl.focus()
@@ -39,9 +39,9 @@
 <div class = "project flex flex-col gap-1 p-3 pl-0 border-2 bg-blue-100 rounded-lg relative">
     {#if !mini}<div class = "filters">
         <Flag bind:value = {data.Show_Archived} symbol = '📂' on:change = {()=>{update('projects', {ID:data.ID, Show_Archived:data.Show_Archived})}}/>
-        <Flag bind:value = {data.Show_Deleted} symbol = '⨯'}} on:change = {()=>{update('projects', {ID:data.ID, Show_Deleted:data.Show_Deleted})}} />
-        <Flag bind:value = {data.Show_Deferred} symbol = 'ⓘ'}} on:change = {()=>{update('projects', {ID:data.ID, Show_Deferred:data.Show_Deferred})}} />
-        <Flag bind:value = {data.Show_Done} symbol = '☑'}} on:change = {()=>{update('projects', {ID:data.ID, Show_Done:data.Show_Done})}} />
+        <Flag bind:value = {data.Show_Deleted} symbol = '⨯' on:change = {()=>{update('projects', {ID:data.ID, Show_Deleted:data.Show_Deleted})}} />
+        <Flag bind:value = {data.Show_Deferred} symbol = 'ⓘ' on:change = {()=>{update('projects', {ID:data.ID, Show_Deferred:data.Show_Deferred})}} />
+        <Flag bind:value = {data.Show_Done} symbol = '☑' on:change = {()=>{update('projects', {ID:data.ID, Show_Done:data.Show_Done})}} />
     </div>{/if}
     <div class = "w-full pl-3">
         {#if data.editing}

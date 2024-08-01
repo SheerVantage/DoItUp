@@ -1,7 +1,7 @@
 {
-	"name": "My offline App!",
-	"short_name": "my-offline-app-2",
-	"start_url": "/",
+	"name": "Do It Up",
+	"short_name": "doitup",
+	"start_url": "https://doitup.netlify.app",
 	"display": "standalone",
 	"theme_color": "#ffffff",
 	"background_color": "#000000",
