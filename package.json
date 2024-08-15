@@ -1,6 +1,6 @@
 {
-	"name": "my-offline-app",
-	"version": "0.0.1",
+	"name": "do-it-app",
+	"version": "1.0.1",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
@@ -8,6 +8,7 @@
 		"preview": "vite preview"
 	},
 	"devDependencies": {
+		"@sqlite.org/sqlite-wasm": "^3.42.0-build4",
 		"@sveltejs/adapter-static": "^3.0.0",
 		"@sveltejs/kit": "^2.5.18",
 		"@sveltejs/vite-plugin-svelte": "^3.1.1",

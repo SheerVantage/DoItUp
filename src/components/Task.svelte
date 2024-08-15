@@ -87,16 +87,16 @@
 
 </script>
 
-<div class = "task flex flex gap-1" class:doing = {data.ID && data.ID == $task?.ID}>
-    
+<div class = "task relative flex flex gap-1" class:doing = {data.ID && data.ID == $task?.ID}>
+    {#if data.ID}
+    <!-- <button id = "button-{data.ID}" class = "actions" popovertarget = "actions-{data.ID}" popovertargetaction = "toggle">∷</button> -->
     <SummaryDetails label = "∷" detailsClasses = "flex actions items-center" summaryClasses = "">
-        <div class = "actionss top-0.5 left-2 absolute text-black bg-blue-100 drop-shadow-xl px-2 py-0.5 flex gap-3 ml-2 rounded">
+        <div class = "actionss top-0.5 left-2 z-3 absolute text-black bg-blue-100 drop-shadow-xl px-2 py-0.5 flex gap-3 ml-2 rounded">
             <button title = "remove" on:click|stopPropagation = {e=>removeTask(data)}>⨯</button>
             <button title = "archive" on:click|stopPropagation = {e=>archive(data)}>{archivedIcon}</button>
             <button title = "defer" on:click|stopPropagation = {e=>defer(data)} class = "text-lg" >{deferredIcon}</button>
             <button title = "start" on:click|stopPropagation = {e=>start(data)}>▷</button>
             <button title = "urgent" on:click|stopPropagation = {e=>urgent(data)}>⭐</button>
-            <!-- <button title = "start" on:click|stopPropagation = {e=>popup(data)}>▢</button> -->
             <button title = "schedule"class = "text-sm" on:click|stopPropagation = {e=>schedule(data)}>🗓</button>
             <ModalDialog classes = "p-2" init = {loadNotes} size = "small" label = "▢" bind:this = {dialog}>
                 <span class = "mb-2">Title: {data.Name}</span>
@@ -108,6 +108,7 @@
             </ModalDialog>
         </div>
     </SummaryDetails>
+    {/if}
     <div class = "flex gap-2 flex-grow items-centers align-top">
     {#if data.ID}<span class = "bg-red-200s ">
         {#if data.Deferred}
@@ -141,11 +142,24 @@
     :global(.task:hover .actions) {visibility: visible;}
     input[type=checkbox] {width: 16px; height: 16px; transition: background 200ms ease-out 0s;}
     input[type=checkbox]:hover {background: whitesmoke;}
+    .task{position: relative;}
     .task-title { min-height:32px; border:1px; padding:0 0.3rem;}
     .doing {background:pink;}
     .deleted {text-decoration: line-through;}
     .archived {color: darkgray;}
     .deferred {color: gray;}
     .archived, .deferred {font-size: small;}
+    [popover] {
+        position: absolute;
+        padding: 2rem;
+        background-color: aquamarine;
+        /* display: flex; */
+        z-index: 2;
+        inset: unset;
+        left:calc(anchor(right) + 100px) ;
+        left:15px;
+        top: anchor(top);
+        top: 100px;
+    }
     /* .task {} */
 </style>

@@ -15,6 +15,8 @@
     function edit(flag, event){
         data.editing = flag
         setTimeout(()=>{
+            if(data.Content == 'new note...')
+                data.Content = ''
             ta.focus()
         }, 200)
     }
@@ -28,7 +30,7 @@
 
         if(data.ID)
             update('notes', data)
-        else{
+        else if(data.Content){
             data.ID = insert('notes', data)
         }
         dispatch('change', data)

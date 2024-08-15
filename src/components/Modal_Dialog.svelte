@@ -4,7 +4,7 @@
 	import { fade, slide } from 'svelte/transition';
 	// export {fields as data}
 	export let init = undefined, fields = {Name:'ABCDEFGH', Project_ID:3}
-	export let caption = 'Caption: Modal Dalog', classes = '', button_classes = '', label = 'Label: Modal Dialog', icon = '', size = 'large', callback = '', validator = undefined, entity = '', enabled = true, sticky = false
+	export let caption = 'Caption: Modal Dalog', classes = '', button_classes = '', label = 'Label: Modal Dialog', icon = '', size = 'large', callback = '', validator = undefined, entity = '', enabled = true //, sticky = false
 	let dialog, isOpen = false, closer, message = '---'
     function open(){
 		init && init({ entity, label })

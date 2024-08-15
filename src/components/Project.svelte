@@ -5,6 +5,7 @@
     import {formatter} from '../components/Formatter.svelte'
     import { nowTS } from '../lib/utilities';
     import Flag from './Flag.svelte';
+    import SummaryDetails from './Summary_Details.svelte';
 
     $: if($tasks){
         duration = $tasks.reduce((num, item)=>{
@@ -36,13 +37,15 @@
     
 </script>
 
-<div class = "project flex flex-col gap-1 p-3 pl-0 border-2 bg-blue-100 rounded-lg relative">
-    {#if !mini}<div class = "filters">
+<div class = "project flex flex-col gap-1 p-3 pl-0 border-2 bg-blue-100 rounded-lg relative" class:row-span-2 = {data.Is_Tall}>
+    <!-- {#if !mini}<SummaryDetails label = "∷" detailsClasses = "flex actions items-center" summaryClasses = "">
+        <div class = "filterss">
         <Flag bind:value = {data.Show_Archived} symbol = '📂' on:change = {()=>{update('projects', {ID:data.ID, Show_Archived:data.Show_Archived})}}/>
         <Flag bind:value = {data.Show_Deleted} symbol = '⨯' on:change = {()=>{update('projects', {ID:data.ID, Show_Deleted:data.Show_Deleted})}} />
         <Flag bind:value = {data.Show_Deferred} symbol = 'ⓘ' on:change = {()=>{update('projects', {ID:data.ID, Show_Deferred:data.Show_Deferred})}} />
         <Flag bind:value = {data.Show_Done} symbol = '☑' on:change = {()=>{update('projects', {ID:data.ID, Show_Done:data.Show_Done})}} />
-    </div>{/if}
+    </div>
+    </SummaryDetails>{/if} -->
     <div class = "w-full pl-3">
         {#if data.editing}
             <input bind:this = {nameEl} type="text" class = "flex-grow bg-blue-200s p-2 w-full" bind:value = {data.Name} on:blur = {e=>edit(false)}
@@ -62,7 +65,19 @@
     <span>{data.Status || ''}</span>
     <span>{data.Date_Start || ''}</span>
     <span>{data.Date_End || ''}</span>
-    <button class = "remover" on:click={e=>{e.stopPropagation(); removeProject(data) }}>x</button>
+    <span class = "remover flex gap-2">
+        <SummaryDetails label = "∷ " detailsClasses = "flex actionss items-center" summaryClasses = "">
+            <div class = "filters">
+                <Flag bind:value = {data.Show_Archived} symbol = '📂' on:change = {()=>{update('projects', {ID:data.ID, Show_Archived:data.Show_Archived})}}/>
+                <Flag bind:value = {data.Show_Deleted} symbol = '⨯' on:change = {()=>{update('projects', {ID:data.ID, Show_Deleted:data.Show_Deleted})}} />
+                <Flag bind:value = {data.Show_Deferred} symbol = 'ⓘ' on:change = {()=>{update('projects', {ID:data.ID, Show_Deferred:data.Show_Deferred})}} />
+                <Flag bind:value = {data.Show_Done} symbol = '☑' on:change = {()=>{update('projects', {ID:data.ID, Show_Done:data.Show_Done})}} />
+                <!-- <Flag bind:value = {data.Is_Tall} symbol = '🡥' on:change = {()=>{update('projects', {ID:data.ID, Is_Tall:data.Is_Tall})}} /> -->
+            </div>
+        </SummaryDetails>
+        <Flag bind:value = {data.Is_Tall} symbol = '🡥' on:change = {()=>{update('projects', {ID:data.ID, Is_Tall:data.Is_Tall})}} />
+        <button classs = "remover" on:click={e=>{e.stopPropagation(); removeProject(data) }}>x</button>
+    </span>
     {/if}
     <ul class = "task-list p-0">
         {#each $tasks || [] as task}<li>
@@ -74,13 +89,18 @@
 
 <style>
     .project {position: relative; }
-    .project:hover .filters {visibility: visible; top:0px; opacity: 0.8;}
-    .filters { box-shadow: 0 3px 10px -3px brown; border-radius: 0 0 5px 5px; transition: 0.3s opacity, 0.2s top; opacity: 0; visibility: hidden; position: absolute; top:-12px; left: 40%; display: inline-flex; gap:0.5rem; padding:0.1rem 0.3rem; background-color: antiquewhite;}
+    .filters {
+        box-shadow: 0 3px 10px -3px brown; border-radius: 0 0 5px 5px; transition: 0.3s opacity, 0.2s top; 
+        opacitys: 0; visibility: hidden; position: absolute; tops:-12px; right: 0%; display: inline-flex; gap:0.5rem; 
+        padding:0.1rem 0.3rem; background-color: antiquewhite;
+    }
+    .project:hover .filters {visibility: visible; tops:0px; opacity: 0.8;}
     :is(div, li) > button {visibility: hidden;}
     :is(div, li):hover > button {visibility: visible;}
     span:empty {display: none;}
     .remover {position: absolute; right: 10px; top: 0;}
     .new-task:not(:focus-within) {visibility: hidden;}
-    .task-list {overflow: auto; max-height: 10rem;}
+    .task-list {overflow: auto; max-height: 10rem; }
+    .row-span-2 .task-list {max-height: calc(100% - 60px);}
     .task-list:hover .new-task {visibility: visible;}
 </style>

@@ -11,6 +11,19 @@ export function now(format = 'yyyy-mm-dd H:M:S'){
 		.replace('H', ("0"+date.getHours()).slice(-2)).replace('M', ("0"+(date.getUTCMinutes())).slice(-2)).replace('S', ("0" + (date.getUTCSeconds())).slice(-2))
 	return str;
 }
+export function nowFull(ts){
+	var a = ts ? new Date(ts * 1000) : new Date()
+	// var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+	// debugger
+	var year = a.getFullYear();
+	var month = ("0" + ( a.getMonth() + 1 ) ).slice(-2) //months[a.getMonth()];
+	var date = ("0" + a.getDate()).slice(-2)
+	var hour = ("0" + a.getHours()).slice(-2)
+	var min = ("0" + a.getMinutes()).slice(-2)
+	var sec = ("0" + a.getSeconds()).slice(-2)
+	var time = year + '-' + month + '-' + date + ' ' + hour + ':' + min + ':' + sec ;
+	return time;
+}
 
 export function difference(start, end){
 	let diff = (end - start) / 60000 // in munutes

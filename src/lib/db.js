@@ -1,11 +1,13 @@
 // db.js
 import Dexie from 'dexie';
 import { liveQuery } from "dexie";
+import {nowTS, nowFull} from './utilities'
 // import relationships from 'dexie-relationships'  // https://stackoverflow.com/questions/36594184/dexie-js-how-to-join-tables
 import download from 'downloadjs'
+let dbName = 'DoItUps'
 
 // export const db = new Dexie('DoItUps', {addons: [relationships]});
-export let db = new Dexie('DoItUps');
+export let db = new Dexie(dbName);
 let schema = {
   projects: '++ID, Name, Duration, Serial, Project_Type_ID, Priority_ID, Deleted, Cancelled, Show_Archived, Show_Deleted, Show_Deferred, Show_Done',
   features:'++ID, Name, Feature_Type_ID',
@@ -83,8 +85,8 @@ export function update(table, data){
 export async function backup(){
   // debugger
   const blob = await db.export(db);
-  download(blob, "doItUp-dexie-export.json", "application/json")
-}
+  // download(blob, "doItUp-dexie-export.json", "application/json")
+  download(blob, `${dbName}-${nowFull()}.json`, "application/json")}
 
 // export async function restore(){
 //   await importInto(db, blob);

@@ -57,7 +57,7 @@
       <table class = "w-full">
         <!-- <tr class = "text-xs"><td>Name</td><td amount>Duration</td><td>Progress</td></tr> -->
         {#each urgentTasks as ts}
-          <tr class = "bg-yellow-100 rounded" class:bg-pink-200 = {$task?.ID == ts.ID}><td><a title = "Start" class = "text-blue-500" aria-hidden="true" href="" on:click={()=>start(ts)}>{ts.Name}</a></td><td amount> {formatter(ts.Duration, 'm2hm')}</td> <td><Progress data = {ts.Progress || ''}/></td></tr>
+          <tr class = "bg-yellow-100 rounded" class:bg-pink-200 = {$task?.ID == ts.ID}><td><a title = "Start" class = "text-blue-500" aria-hidden="true" href on:click={()=>start(ts)}>{ts.Name}</a></td><td amount> {formatter(ts.Duration, 'm2hm')}</td> <td><Progress data = {ts.Progress || ''}/></td></tr>
           <!-- <Task data = {ts}/> -->
         {/each}
         <tr class = "bg-yellow-200"><td></td><td amount>{formatter(totalUrgentTime, 'm2hm')}</td><td></td></tr>

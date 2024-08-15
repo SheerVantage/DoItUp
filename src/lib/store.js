@@ -30,11 +30,11 @@ if(browser){
 // })
 }
 export async function load(){
-      // debugger
-      let conf = await fetch(base+'/configs.json').then(r=>r.json())
-      configs.set(conf)
-      // debugger
-      links.set(conf.links)
+      // // debugger
+      // let conf = await fetch(base+'/configs.json').then(r=>r.json())
+      // configs.set(conf)
+      // // debugger
+      // links.set(conf.links)
 }
 
 export const user = writable({})

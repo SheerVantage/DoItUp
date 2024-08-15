@@ -1,0 +1,24 @@
+{
+"db":"doitup.opfs.sqlite3",
+"tables":[
+    {   "name":"project",
+        "fields":["Name"], 
+        "values":[
+        ]
+    },
+    {   "name":"tasks",
+        "fields":["Name", "Description", "Date_Start", "Date_End", "Project_ID"], 
+        "values":[
+            ["Me", "", "01720243471", "agalib@gmail.com",  "1"], 
+            ["Spreeha", "", "0175856818", "afia.anwar.spreeha@gmail.com",  "3"], 
+            ["Abdallaah", "", "01720243471", "abdallah.galib.wasi@gmail.com", "3" ], 
+            ["Monir", "", "01710010368", "", "3"], ["Savar Factory", "", "", "", "10"], 
+            ["Delwar bhai", "", "01710010368", "", "7"], ["Zakir", "", "", "", "8"], 
+            ["Shubhro", "", "01710010368", "", "5"], ["Shaju", "", "", "", "8"], 
+            ["Najmul", "", "01710010368", "", "9"], ["Masud", "", "", "", "9"], 
+            ["Bua", "", "01710010368", "", "9"], ["Delwar Bhai", "", "", "", "7"], 
+            ["A4 Agro", "", "", "", "12"], ["Ashrafee Hotel", "", "", "", "12"]
+        ]
+    }
+]
+}

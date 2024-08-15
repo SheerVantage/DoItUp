@@ -10,9 +10,9 @@
     }
 </script>
 
-<span class = "cursor-pointer" aria-hidden="true" class:selected = {value} on:click={toggle}>{symbol}</span>
+<span class = "cursor-pointer px-1 rounded" aria-hidden="true" class:selected = {value} on:click={toggle}>{symbol}</span>
 
 <style>
-    .selected {color: green; background-color: red;}
+    .selected {color: green; background-color: bisque;}
 </style>
 

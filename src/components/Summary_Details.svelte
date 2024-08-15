@@ -1,15 +1,36 @@
 <!-- https://codepen.io/WW3/pen/pYqRgq?editors=1010 -->
-<details class = "flex w-fit relative { detailsClasses }">
+<details aria-hidden="true" on:mouseover={hoverIn} on:focus={hoverIn} on:mouseout={hoverOut} on:blur={hoverOut} class = "flex w-fit relative { detailsClasses }" open = {isOpen}>
     <summary aria-haspopup="menu" class = "inline-blocks cursor-pointer {summaryClasses}">{label || caption || 'Expand'} </summary>
     <!-- <ul role="menu" class = "content absolute"> -->
         <!-- <span role='menuitem'>fffff</span> -->
-        <slot>Nothing here, yet...</slot>
-    <!-- </ul> -->
+
+        <div class="dropdown-wrapper">
+            <slot>Nothing here, yet...</slot>
+        </div>
+
+        <!-- </ul> -->
 </details>
 
 <script type="text/javascript">
 	// import {transactions} from '../store.js'
-	export let label = '', caption = '', summaryClasses, detailsClasses
+	export let label = '', caption = '', summaryClasses, detailsClasses, isOpen = false
+
+    // $(function() {
+    //     $('details').on('mouseover focus', function() {
+    //         $(this).attr('open', true);
+    //     }).on('mouseout blur', function() {
+    //         $(this).attr('open', false);
+    //     })
+    // });
+
+    function hoverIn(){
+        // debugger
+        // isOpen = true
+    }
+    function hoverOut(){
+        // isOpen = false
+    }
+    
 </script>
 
 <style>
@@ -56,4 +77,35 @@
         border-bottom: solid 2px #000;
         color: #fff;
     } */
+
+    
+details[open] .dropdown-wrapper {
+	animation: fade-in 0.5s forwards;
+}
+
+details.summary-closing[open] .dropdown-wrapper {
+	animation: fade-out 0.5s forwards;
+}
+
+@keyframes fade-in {
+	0% {
+		/* transform: translateY(-20px); */
+		opacity: 0;
+	}
+	100% {
+		/* transform: translateY(0); */
+		opacity: 1;
+	}
+}
+
+@keyframes fade-out {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+		/* transform: translateY(-20px); */
+	}
+}
+
 </style>
