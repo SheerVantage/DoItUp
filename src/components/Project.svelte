@@ -101,6 +101,6 @@
     .remover {position: absolute; right: 10px; top: 0;}
     .new-task:not(:focus-within) {visibility: hidden;}
     .task-list {overflow: auto; max-height: 10rem; }
-    .row-span-2 .task-list {max-height: calc(100% - 60px);}
+    .row-span-2 .task-list {max-height: 20rem;}
     .task-list:hover .new-task {visibility: visible;}
 </style>
