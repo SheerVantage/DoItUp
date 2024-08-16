@@ -37,7 +37,7 @@
     
 </script>
 
-<div class = "project flex flex-col gap-1 p-3 pl-0 border-2 bg-blue-100 rounded-lg relative" class:row-span-2 = {data.Is_Tall}>
+<div class = "project flex flex-col gap-1 p-3 pl-0 border-2 bg-blue-100 rounded-lg relative" class:row-span-2 = {data.Is_Tall} class:col-span-2 = {data.Is_Wide}>
     <!-- {#if !mini}<SummaryDetails label = "∷" detailsClasses = "flex actions items-center" summaryClasses = "">
         <div class = "filterss">
         <Flag bind:value = {data.Show_Archived} symbol = '📂' on:change = {()=>{update('projects', {ID:data.ID, Show_Archived:data.Show_Archived})}}/>
@@ -75,7 +75,8 @@
                 <!-- <Flag bind:value = {data.Is_Tall} symbol = '🡥' on:change = {()=>{update('projects', {ID:data.ID, Is_Tall:data.Is_Tall})}} /> -->
             </div>
         </SummaryDetails>
-        <Flag bind:value = {data.Is_Tall} symbol = '🡥' on:change = {()=>{update('projects', {ID:data.ID, Is_Tall:data.Is_Tall})}} />
+        <Flag bind:value = {data.Is_Tall} symbol = '↕' on:change = {()=>{update('projects', {ID:data.ID, Is_Tall:data.Is_Tall})}} />
+        <Flag bind:value = {data.Is_Wide} symbol = '↔' on:change = {()=>{update('projects', {ID:data.ID, Is_Wide:data.Is_Wide})}} />
         <button classs = "remover" on:click={e=>{e.stopPropagation(); removeProject(data) }}>x</button>
     </span>
     {/if}
@@ -101,6 +102,7 @@
     .remover {position: absolute; right: 10px; top: 0;}
     .new-task:not(:focus-within) {visibility: hidden;}
     .task-list {overflow: auto; max-height: 10rem; }
-    .row-span-2 .task-list {max-height: 20rem;}
+    .row-span-2 .task-list {max-height: 20rem; min-height: calc(100% - 2rem);}
+    /* .col-span-2 .task-list {max-height: 20rem;} */
     .task-list:hover .new-task {visibility: visible;}
 </style>
