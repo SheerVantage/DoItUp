@@ -1,28 +1,19 @@
 <script>
     import "../app.css";
-    import AppBody from '../components/AppBody.svelte'
-	// import Header from '$components/specials/Header.svelte'
-    // import SingUpIn from '$specials/SignUpIn.svelte'
-    // import Worker from '$lib/worker.js?worker'
-    // import { onMount } from 'svelte';
 
-    // onMount(()=>{
-    //     let worker = new Worker()
-    //     worker.onmessage = ({data}) => {  
-    //         data.type === 'log' ? console.log(data.payload) : console.log(data.payload);  
-    //     }; 
-    // })    
+    import Worker from '$lib/worker.js?worker'
+    import { onMount } from 'svelte';
+    import {worker} from '../lib/store'
+
+    onMount(()=>{
+        $worker = new Worker()
+        $worker.onmessage = ({data}) => {
+            if(data.ready){
+                $worker.postMessage({action:'init_schema'})
+				// $worker.postMessage({action:'execute', sql:'Alter Table projects ADD COLUMN Is_Active'})
+            }
+        }
+    })
 </script>
 
-<!-- <div> -->
-    <!-- {#if $user && $user.uid} -->
-    <!-- {#if browser} -->
-        <!-- <Header caption = "Do It Up" logo = {"/favicon.svg"} /> -->
-        <!-- <section class = "h-full overflow-auto"><slot /></section> -->
-    <AppBody>
-        <slot />
-    </AppBody>
-    <!-- {:else}
-        <SingUpIn />
-    {/if} -->
-<!-- </div> -->
+<slot/>

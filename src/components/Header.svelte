@@ -88,7 +88,7 @@
 		<span class = "ml-1s sm:text-sm text-blue-700 flex"> {$title} </span>
 	</span>
 	
-	<div flex class = "ml-auto flex">
+	<div flex class = "ml-auto flex flex-grow-0">
 		<!-- <button on:click = {logout} class = "👤"> 👷{ $user?.employee || $user?.name || $user?.Name || $user?.user_name || ''}</button> -->
 		<!-- <SB caption = '👷' --bg = "pink" choices = {[{label:'Logout', fn:logout}, {label:'Profile', url:base+'/profile'}]}/> -->
 		<!-- <button class = "bg-blue-300 px-1" on:click = {()=>Navigate("./orders")}>≣</button> -->

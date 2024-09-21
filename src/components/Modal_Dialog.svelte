@@ -3,9 +3,13 @@
 <script>
 	import { fade, slide } from 'svelte/transition';
 	// export {fields as data}
-	export let init = undefined, fields = {Name:'ABCDEFGH', Project_ID:3}
+	export let init = undefined, isOpen = false, fields = {Name:'ABCDEFGH', Project_ID:3}
 	export let caption = 'Caption: Modal Dalog', classes = '', button_classes = '', label = 'Label: Modal Dialog', icon = '', size = 'large', callback = '', validator = undefined, entity = '', enabled = true //, sticky = false
-	let dialog, isOpen = false, closer, message = '---'
+	let dialog, closer, message = '---'
+	$: if(isOpen){
+		// debugger
+		open()
+	}
     function open(){
 		init && init({ entity, label })
     	// if(enabled)
@@ -74,9 +78,9 @@
 </div> -->
 
 <div class = "modal-dialog">
-	<button on:click = { e => { e.preventDefault(); e.stopPropagation(); } } disabled = "{!enabled}" on:click = {open} class = "hover:bg-red-100 px-3 {button_classes}">
+	{#if label != 'none'}<button on:click = { e => { e.preventDefault(); e.stopPropagation(); } } disabled = "{!enabled}" on:click = {open} class = "hover:bg-red-100 px-3 {button_classes}">
 		{#if icon}<i class = {icon}></i>{/if}{ label || 'Show' }
-	</button>
+	</button>{/if}
 	<dialog bind:this = {dialog} class = "cursor-default p-2 rounded-xl shadow-2xl drop-shadow-lg sidebar modal animate {size}">
 		{#if isOpen}
 	    <div transition:slide={{delay: 200, duration: 500}} class = "dialog-title p-2 gap-2" style = "heights:48px; display:flex; place-items: center;">

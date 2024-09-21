@@ -19,7 +19,7 @@ import { onMount } from 'svelte'
 export const configs = writable({link:'', server:''})
 // onMount(async ()=>{})
 if(browser){
-      load()
+      // load()
 // onMount(async ()=>{
 //       // configs.set(await fetch(base+'configs.json').then(r=>r.json()))
 
@@ -28,13 +28,6 @@ if(browser){
 //       // console.log(conf)
 // //   })
 // })
-}
-export async function load(){
-      // // debugger
-      // let conf = await fetch(base+'/configs.json').then(r=>r.json())
-      // configs.set(conf)
-      // // debugger
-      // links.set(conf.links)
 }
 
 export const user = writable({})
@@ -64,3 +57,4 @@ export const links = writable([])
 export const token = writable('')
 export const title = writable('')
 export const url = writable('')
+export const worker = writable('')

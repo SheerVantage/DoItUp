@@ -1,12 +1,6 @@
 {
 	"compilerOptions": {
 		"paths": {
-			"$components": [
-				"../components"
-			],
-			"$components/*": [
-				"../components/*"
-			],
 			"$lib": [
 				"../src/lib"
 			],

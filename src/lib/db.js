@@ -1,124 +1,94 @@
-// db.js
-import Dexie from 'dexie';
-import { liveQuery } from "dexie";
 import {nowTS, nowFull} from './utilities'
-// import relationships from 'dexie-relationships'  // https://stackoverflow.com/questions/36594184/dexie-js-how-to-join-tables
-import download from 'downloadjs'
-let dbName = 'DoItUps'
+import {worker} from './store'
+let $worker
 
-// export const db = new Dexie('DoItUps', {addons: [relationships]});
-export let db = new Dexie(dbName);
-let schema = {
-  projects: '++ID, Name, Duration, Serial, Project_Type_ID, Priority_ID, Deleted, Cancelled, Show_Archived, Show_Deleted, Show_Deferred, Show_Done',
-  features:'++ID, Name, Feature_Type_ID',
-  feature_types:'++ID, Name',
-  project_types:'++ID, Name, Recurrent, Period',
-  // tasks: '++ID, Name, Duration, Project_ID -> projects.ID, Task_ID, Done, Serial, Archived, Deferred, Current', // Primary key and indexed props
-  tasks: '++ID, Name, Duration, notes, Project_ID, Priority_ID, Task_Type_ID, DateTime_Created, DateTime_Start, DateTime_End, Task_ID,  Serial, Current, Archived, Deferred, Urgent, Doing, Done, Deleted, Cancelled', // Primary key and indexed props
-  task_types:'++ID, Name', // UI Design, Bug Fixture, Support, Correspondence, Documentation
-  priorities:'++ID, Name, Color, Icon, BG',
-  sessions: '++ID, Duration, Task_ID, DateTime_Start, DateTime_End, Progress, Serial, Current, Deferred, Doing, Done',
-  notes: '++ID, Content, Task_ID, DateTime, Project_ID',
-  organizations:'++ID, Name, Type',
-  persons:'++ID, Name, Organization_ID',
-}
-db.version(1).stores(schema);
-
-function intialize(){
-
-  // insert('projects', {Name:'Daily Retuals', Project_Type_ID:1})
-  // insert('projects', {Name:'Social Activities', Project_Type_ID:1})
-  // insert('project_types', {Name:'Application', Recur:3})
-
-  // insert('project_types', {Name:'Web Site', Recur:false})
-  // insert('project_types', {Name:'Daily Retuals', Recur:'Daily'})
-  // insert('project_types', {Name:'Occational', Recur:'Sporadically'})
-
-  // insert('task_types', {Name:'Design / Development'})
-  // insert('task_types', {Name:'Communication'})
-  // insert('task_types', {Name:'Documentation'})
-
-}
-// intialize()
-
-export function getList( table, conditions = {}, orders = {} ){
+worker.subscribe(value=>{
   // debugger
-  return liveQuery(() => db[table].filter((item)=>{
-    return createFilters(item, conditions)
-  }).toArray())
-}
-export async function getRecords( table, conditions = {}, orders = {} ){
-  // debugger
-  return await db[table].filter((item)=>{
-    return createFilters(item, conditions)
-  }).toArray()
-}
+  $worker = value
+})
 
-function createFilters(item, conditions = undefined={}){
+export function load( table, fields, conditions = {}, orders = {}, callback ){
   // debugger
-  let cond = {}
-  let keys = conditions ? Object.keys(conditions) : ''
-  let flag = keys == '' ? true : keys.reduce((flag, key)=>{
-    // debugger
-    flag = flag && ( Array.isArray(conditions[key]) ? item[key] in conditions[key] : item[key] == conditions[key] )
-    cond[key] = conditions[key]
-    return flag
-  }, true)
-  // console.log({Name:item.Name, ...cond, flag})
-  return flag
+  if(typeof conditions == 'function'){
+    callback = conditions 
+    conditions = ''
+  }
+  else if (typeof orders == 'function'){
+    callback = orders
+    orders = ''
+  }
+
+  let params = {action:'select', table, fields, conditions, orders}
+  $worker.postMessage(params)
+  // executeCallback(params, callback)
+  // (function(params, callback){
+    $worker.onmessage = ({data}) => {
+      if(data.action == 'select' && data.table == table && data.fields == fields && data.conditions == conditions && data.orders == orders)
+        callback(data.rows)
+    }
+  // }(params, callback))
+}
+function executeCallback({action, table, }, callback){
+  // $worker.onmessage = ({data}) => {
+  //   if(data.action == 'select' && data.table == params.table && data.fields == params.fields && data.conditions == params.conditions && data.orders == params.orders)
+  //     callback(data.rows)
+  // }
+(function(params, callback){
+    $worker.onmessage = ({data}) => {
+      if(data.action == 'select' && data.table == params.table && data.fields == params.fields && data.conditions == params.conditions && data.orders == params.orders)
+        callback(data.rows)
+    }
+  }(params, callback))
 }
 
 export async function insert(table, data){
-  let {editing, ...udata} = data
-  return await db[table].add(udata)
+  delete data.editing
+  let fields = Object.keys(data)
+  let values = fields.map(field=>data[field])
+  $worker.postMessage({action:'insert', table, fields, values})
 }
 
-export function remove(table, id){
-  return db[table].where('ID').equals(id).delete()
+export function remove(table, conditions){
+  $worker.postMessage({action:'delete', table, conditions})
+  // return db[table].where('ID').equals(id).delete()
 }
 
-export function update(table, data){
-  db[table].update(data.ID, data)
-  // console.log(data)
+export function update(table, data, conditions, callback){
+  delete data.editing
+  $worker.postMessage({action:'update', table, fields_values:data, conditions})
+  callback && callback
 }
 
-export async function backup(){
+export function execute(sql){
   // debugger
-  const blob = await db.export(db);
-  // download(blob, "doItUp-dexie-export.json", "application/json")
-  download(blob, `${dbName}-${nowFull()}.json`, "application/json")}
-
-// export async function restore(){
-//   await importInto(db, blob);
-// }
-
-export async function restore(ev){
-  ev.stopPropagation();
-  ev.preventDefault();
-
-  // Pick the File from the drop event (a File is also a Blob):
-  const file = ev.currentTarget.files[0];
-  try {
-    if (!file) throw new Error(`Only files can be dropped here`);
-    console.log("Importing " + file.name);
-    // debugger
-    await db.delete();
-    db = new Dexie('DoItUps')
-    db.version(1).stores(schema);
-    // debugger
-    await db.import(file)
-    console.log("Import complete");
-    // await showContent();
-  } catch (error) {
-    console.error(''+error);
-  }
+  $worker.postMessage({action:'execute', sql})
+  // return db[table].where('ID').equals(id).delete()
 }
+//import projects from './DoItUps-2024-08-26 16_50_45.json'
+let projects
+export async function restore(projects){
 
-async function showContent() {
-const tables = await Promise.all(db.tables.map (async table => ({
-  name: table.name,
-  count: await table.count(),
-  primKey: table.schema.primKey.src
-})))
-console.log(tables)
+  // debugger
+  projects.data.data.forEach(async ({tableName, rows})=>{
+    // execute(`truncate ${tableName};`)
+    execute(`delete from ${tableName};`)
+  })
+  
+  projects.data.data.forEach(async ({tableName, rows})=>{
+    rows.forEach(row=>{
+      delete(row.editing)
+      // delete(row.ID)
+      insert(tableName, row)
+    })
+  })
+  // execute('ALTER TABLE projects ADD COLUMN Show_Cancelled')
+  // execute('ALTER TABLE projects ADD COLUMN Show_All')
+  execute("update tasks set Deleted = case when Deleted = 'true' then Deleted else 'false' end")
+  execute("update tasks set Done = case when Done = 'true' then Done else 'false' end")
+  execute("update tasks set Doing = case when Doing = 'true' then Doing else 'false' end")
+  execute("update tasks set Cancelled = case when Cancelled = 'true' then Cancelled else 'false' end")
+  execute("update tasks set Deferred = case when Deferred = 'true' then Deferred else 'false' end")
+  execute("update tasks set Urgent = case when Urgent = 'true' then Urgent else 'false' end")
+  execute("update tasks set Current = case when Current = 'true' then Current else 'false' end")
+  execute("update tasks set Archived = case when Archived = 'true' then Archived else 'false' end")
 }

@@ -1,24 +1,41 @@
 {
-"db":"doitup.opfs.sqlite3",
-"tables":[
-    {   "name":"project",
-        "fields":["Name"], 
-        "values":[
-        ]
-    },
-    {   "name":"tasks",
-        "fields":["Name", "Description", "Date_Start", "Date_End", "Project_ID"], 
-        "values":[
-            ["Me", "", "01720243471", "agalib@gmail.com",  "1"], 
-            ["Spreeha", "", "0175856818", "afia.anwar.spreeha@gmail.com",  "3"], 
-            ["Abdallaah", "", "01720243471", "abdallah.galib.wasi@gmail.com", "3" ], 
-            ["Monir", "", "01710010368", "", "3"], ["Savar Factory", "", "", "", "10"], 
-            ["Delwar bhai", "", "01710010368", "", "7"], ["Zakir", "", "", "", "8"], 
-            ["Shubhro", "", "01710010368", "", "5"], ["Shaju", "", "", "", "8"], 
-            ["Najmul", "", "01710010368", "", "9"], ["Masud", "", "", "", "9"], 
-            ["Bua", "", "01710010368", "", "9"], ["Delwar Bhai", "", "", "", "7"], 
-            ["A4 Agro", "", "", "", "12"], ["Ashrafee Hotel", "", "", "", "12"]
-        ]
-    }
-]
+    "db":"doitup.opfs.sqlite",
+    "tables":[
+        {   "name":"project_types",
+            "fields":"Name, Recurrent", 
+            "values":[]
+        },
+        {   "name":"organizations",
+            "fields":"Name, Recurrent,Type", 
+            "values":[]
+        },
+        {   "name":"projects",
+            "fields":"Name, Is_Tall, Is_Wide, Duration, Serial, Project_Type_ID, Priority_ID, Deleted, tasks, Cancelled, Show_Archived, Show_Deleted, Show_Deferred, Show_Done, Show_Cancelled",
+            "values":[]
+        },
+        {   "name":"task_types",
+            "fields":"Name, Recurrent", 
+            "values":[]
+        },
+        {   "name":"tasks",
+            "fields":"Name, Project_ID, Duration, notes, Priority_ID, Task_Type_ID, DateTime_Created, DateTime_Start, DateTime_End, Task_ID,  Serial, Current, Archived, Deferred, Urgent, Doing, Done, Deleted, Cancelled", 
+            "values":[]
+        },
+        {   "name":"sessions",
+            "fields":"Name, Task_ID, DateTime_Start, DateTime_End, Progress, Serial, Current, Deferred, Doing, Done", 
+            "values":[]
+        },
+        {   "name":"notes",
+            "fields":"Content, Task_ID, DateTime, Project_ID, Is_Done", 
+            "values":[]
+        },
+        {   "name":"persons",
+            "fields":"Name, Email, Mobile, Designation_ID, Image, Organization_ID", 
+            "values":[]
+        },
+        {   "name":"priorities",
+            "fields":"Name, Value, Color, Icon, BG", 
+            "values":[]
+        }
+    ]
 }
