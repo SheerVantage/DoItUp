@@ -7,7 +7,7 @@
     import { load } from "../lib/db";
     import { title, task } from "../lib/store";
     import { nowTS, difference } from '../lib/utilities';
-    // import Progress from '../components/Progress.svelte'
+    import Progress from '../components/Progress.svelte'
     import {formatter} from '../components/Formatter.svelte'
   
     // let tasks = getList('tasks', {Current:true}) //.filter(isTodaysTask), 
