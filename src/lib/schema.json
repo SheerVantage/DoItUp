@@ -10,7 +10,7 @@
             "values":[]
         },
         {   "name":"projects",
-            "fields":"Name, Is_Tall, Is_Wide, Duration, Serial, Project_Type_ID, Priority_ID, Deleted, tasks, Cancelled, Show_Archived, Show_Deleted, Show_Deferred, Show_Done, Show_Cancelled",
+            "fields":"Name, Is_Active, Is_Tall, Is_Wide, Duration, Serial, Project_Type_ID, Priority_ID, Deleted, tasks, Cancelled, Show_Archived, Show_Deleted, Show_Deferred, Show_Done, Show_Cancelled",
             "values":[]
         },
         {   "name":"task_types",
