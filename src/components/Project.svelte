@@ -87,7 +87,7 @@
     
 </script>
 
-<div class = "project flex flex-col gap-1 p-3 pl-0 border-2 bg-blue-100 rounded-lg relative" class:row-span-2 = {data.Is_Tall} class:col-span-2 = {data.Is_Wide}>
+<div class = "project flex flex-col gap-1 p-3 pl-0 border-2 bg-blue-100 rounded-lg relative" class:row-span-2 = {data.Is_Tall + '' == 'true'} class:col-span-2 = {data.Is_Wide + '' == 'true'}>
     <div class = "w-full pl-3">
         {#if data.editing}
             <input bind:this = {nameEl} type="text" class = "flex-grow bg-blue-200s p-2 w-full" bind:value = {data.Name} on:blur = {e=>edit(false)}
