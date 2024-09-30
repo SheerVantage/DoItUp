@@ -148,7 +148,7 @@
     <Restore />
     </svelte:fragment>
   </Header>
-  <button on:click = {send}>Send</button>
+  <!-- <button on:click = {send}>Send</button> -->
   <section class = "overflow p-3 project-grid gap-2 h-full">
     <div class = "project-list flex flex-col gap-1 row-span-2s bg-yellow-100 p-3 rounded-md overflow-auto">
       {#each (projects || []).filter(p => p.Is_Active != 'true' && p.Is_Active != true) as data}
