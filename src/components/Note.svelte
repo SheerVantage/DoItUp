@@ -1,10 +1,10 @@
-<div class = "w-full">
+<div class = "w-full hover:bg-blue-200s">
     {#if data.editing}
         <textarea bind:value = {data.Content} bind:this = {ta} on:blur = {onBlur} class = "w-full bg-blue-100 p-1" name="" id=""></textarea>
     {:else}
     <span class = "flex gap-1">
         <input class = "mt-2" type="checkbox" bind:checked = {data.Is_Done} on:click={complete}/>
-        <pre class:new-note = {data.Content == 'new note...'} style = "font-family:Arial, Helvetica, sans-serif; white-space: normal;" class = "font-serif w-full bg-blue-100 rounded-lg p-1 px-2" aria-hidden="true" on:click={e=>edit(true, e)}>{data.Content}</pre>
+        <pre class:new-note = {data.Content == 'new note...'} style = "font-family:Arial, Helvetica, sans-serif; white-spaceeee: normal;" class = "font-serif w-full bg-blue-100 hover:bg-blue-200 rounded-lg p-1 px-2" aria-hidden="true" on:click={e=>edit(true, e)}>{data.Content}</pre>
     </span>
     {/if}
 </div>
@@ -37,7 +37,7 @@
             data.ID = insert('notes', data)
         }
         dispatch('change', data)
-        data = {Content:'new note...', Task_ID:data.Task_ID}
+        // data = {Content:'new note...', Task_ID:data.Task_ID}
     }
     
     function complete(){

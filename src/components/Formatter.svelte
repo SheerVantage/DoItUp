@@ -7,7 +7,9 @@
     let result
 
     export function formatter(value, format, includeSuffix){
-        if(!value) return format == 'm2hm' ? '0' : ''
+        
+        if(!value || value == 'null') return '0.00' //format == 'm2hm' ? '0' : '0.00'
+        debugger
         switch(format){
             // case 'amount':
             //     result = toDecimal(value, format, precision)

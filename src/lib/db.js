@@ -1,3 +1,4 @@
+import Worker from '$lib/worker.js?worker'
 import {nowTS, nowFull} from './utilities'
 import {worker} from './store'
 let $worker
@@ -41,11 +42,19 @@ function executeCallback({action, table, }, callback){
   }(params, callback))
 }
 
-export async function insert(table, data){
+export async function insert(table, data, callback){
   delete data.editing
   let fields = Object.keys(data)
   let values = fields.map(field=>data[field])
-  $worker.postMessage({action:'insert', table, fields, values})
+  // $worker.postMessage({action:'insert', table, fields, values})
+  let params = {action:'insert', table, fields, values}
+  $worker.postMessage(params)
+  // executeCallback(params, callback)
+  // (function(params, callback){
+  $worker.onmessage = ({data:result}) => {
+    if(result.action == params.action && result.table == params.table /*&& result.fields == params.fields && result.values == params.values*/ && callback)
+      callback({...data, ID:result.ID})
+  }
 }
 
 export function remove(table, conditions){

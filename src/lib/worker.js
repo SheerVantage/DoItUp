@@ -32,6 +32,7 @@ sqlite3InitModule().then( async sqlite3 => {
     postMessage({ready:true})
   }
   else{ log('OPFS is not present or available...') }
+  // postMessage({action:'something'})
 
 })
 
@@ -99,13 +100,15 @@ onmessage = async ({data})=>{
       })
     }
     iid = insert(data.table || data.entity, data.fields, data.values)
-    entry = typeof entry == 'string' ? {Name:entry, ID: iid} : {...data.fields_values, ID:iid}
-    postMessage({entity:data.entity, table:data.table, id:iid, action:data.action, row:entry})
+    entry = typeof entry == 'string' ? {Name: entry, ID: iid} : {...data.fields_values, ID:iid}
+    // let obj = {entity:data.entity, table:data.table, id:iid, action:data.action}
+    // console.log(obj)
+    postMessage({...data, ID:iid})
   }
   else if(data.action == 'update'){
     data.conditions = data.conditions || `ID = ${data.fields_values.ID}`
     row = update(data.table || data.entity, data.fields_values, data.conditions)
-    postMessage({entity:data.entity, row: data.row || data.fields_values, action:data.action})
+    postMessage({entity:data.entity, table:data.table, action:data.action /* row: data.row || data.fields_values, */ })
   }
   else if(data.action == 'delete' || data.action == 'remove'){
     rows = remove(data.table || data.entity, data.conditions)
@@ -270,8 +273,10 @@ export function insert(table, fields, values){
   let sql = `INSERT INTO ${table} ( ${fields} ) VALUES( ${values} )`
   log(sql, debug)
   let iid = db.exec(sql)//, { rowMode: "object" }
-  if(!iid)
+  // debugger
+  // if(!iid){
     iid = db.exec( `SELECT MAX(ID) ID from ${table}`, { rowMode: "object" } )[0]['ID']
+  // }
 
   // iid = iid[0]
   // iid = iid['ID']

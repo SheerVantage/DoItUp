@@ -8,19 +8,31 @@
   // import Popover from '../../components/Popover.svelte';
   // import download from 'downloadjs'
   import {onMount} from 'svelte'
-  import {worker} from '../../lib/store'
+  // import {worker} from '../../lib/store'
+  let worker
   // import {importDB, exportDB, importInto, peakImportFile} from "dexie-export-import";
 
   import Worker from '$lib/worker.js?worker'
-    import Restore from '../../components/Restore.svelte';
+  import Restore from '../../components/Restore.svelte';
   let filters = ['Done', 'Deleted', 'Cancelled', 'Deferred', 'Archived']
 
     onMount(()=>{
         $title = "All Projects"
         // debugger
-        if(!$worker)
-          $worker = new Worker()
-        $worker.onmessage = ({data}) => {
+        // if(!$worker)
+          worker = new Worker()
+        // debugger
+        // worker.addEventListener('message', ({data})=>{
+        //   if(data.ready){
+        //     // alert('===========')
+        //   }
+        //   else if (data.action == 'update' && data.table == 'projects'){
+        //     debugger
+        //   }
+        // })
+        worker.onmessage = ({data}) => {
+        // worker.addEventListener('message', ({data})=>{
+        //   debugger
             if(data.ready){
             //   $worker.postMessage({action:'select', table:'projects'})
             // }
@@ -43,11 +55,18 @@
                 })
               })
             }
-            else if (data.action == 'insert' && data.entity == 'projects'){
+            else if (data.action == 'insert' && data.table == 'projects'){
               debugger
               projects = [...projects, data.row]
             }
+            else if (data.action == 'update' && data.table == 'projects'){
+              debugger
+            }
+            else{
+              projects
+            }
         }
+      // )
     })
 
   let projects //= getList('projects', '', 'Name') //liveQuery(() => db.projects.toArray())
@@ -55,22 +74,25 @@
   
   async function addProject() {
       try {
-        insert('projects', { Name: 'new project', Duration: '0.0', tasks:0, Is_Active:true })
+        // worker.postMessage({action:'select', table:'projects', fields:'*'})
+        insert('projects', { Name: 'new project', Duration: '0.0', tasks:0, Is_Active:true }, row=>{
+          projects = [...projects, row]
+        })
           // const id = await db.projects.add({ Name: 'Project ' + ($projects.length + 1), Duration: '2.5', tasks:4 });
       } catch (error) {
           status = `Failed to add project: ${error}`;
           console.log(error)
       }
   }
-  async function addTask() {
-      try {
-          // debugger
-          // const id = await db.tasks.add({ Name: 'Test Task' + ($tasks.length + 1), Duration: '2.5', tasks:4 });
-      } catch (error) {
-          status = `Failed to add project: ${error}`;
-          console.log(error)
-      }
-  }
+  // async function addTask() {
+  //     try {
+  //         // debugger
+  //         // const id = await db.tasks.add({ Name: 'Test Task' + ($tasks.length + 1), Duration: '2.5', tasks:4 });
+  //     } catch (error) {
+  //         status = `Failed to add project: ${error}`;
+  //         console.log(error)
+  //     }
+  // }
 
   function activate(project){
     project.Is_Active = true
@@ -99,6 +121,10 @@
         })
       }
   }
+
+  function send(){
+    worker.postMessage({action:'select', table:'projects', fields:'*'})
+  }
 </script>
 <!-- <div class = "app-body"> -->
 
@@ -122,7 +148,7 @@
     <Restore />
     </svelte:fragment>
   </Header>
-
+  <button on:click = {send}>Send</button>
   <section class = "overflow p-3 project-grid gap-2 h-full">
     <div class = "project-list flex flex-col gap-1 row-span-2s bg-yellow-100 p-3 rounded-md overflow-auto">
       {#each (projects || []).filter(p => p.Is_Active != 'true' && p.Is_Active != true) as data}

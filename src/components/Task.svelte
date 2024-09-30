@@ -154,12 +154,16 @@
                 on:keypress = {(e)=>{ e.code == 'Enter' && edit(false, e)}}/>
             <input type = "number" class = "w-12 px-0.5" bind:value = {data.Duration} on:focus = {onFocus} on:blur = {onBlur} on:keypress = { e => { e.code == 'Enter' && edit(false, e)}} />
     {:else}
-        <div aria-hidden="true" class:bg-yellow-100 = {data.Urgent == 'true'} class:text-gray-400 = {data.Name == ''} class:text-red-600 = {data.Current == 'true'} class:deleted = {data.Deleted == 'true'} class = "task-title hover:bg-blue rounded flex flex-grow relative w-full items-center" class:text-green = {data.Done == 'true'} >
-            <span aria-hidden="true" on:click = {()=>edit(true)} class:deferred = {data.Deferred == 'true'} class:archived = {data.Archived == 'true'} class = " flex-grow hover:bg-blue-200">
+        <div aria-hidden="true" class:bg-yellow-100 = {data.Urgent == 'true'} class:text-gray-400 = {data.Name == ''} class:text-red-600 = {data.Current == 'true'} class:deleted = {data.Deleted == 'true'} class = "task-title hover:bg-blue-200 rounded flex flex-grow relative w-full items-center" class:text-green = {data.Done == 'true'} >
+            <span aria-hidden="true" on:click = {()=>edit(true)} class:deferred = {data.Deferred == 'true'} class:archived = {data.Archived == 'true'} class = " flex-grow">
                 {data.Name || 'add new task'}
-                {#if data.notes }<span aria-hidden="true" on:click|stopPropagation = {ShowNotes} class = "rounded bg-blue-300 text-white text-xs px-1 cursor-pointer">{data.notes - 0 + 1}</span>{/if}
+                {#if data.Name } <span aria-hidden="true" on:click|stopPropagation = {ShowNotes} class = "ml-0.5 rounded bg-blue-300 text-white text-xs px-1 cursor-pointer">
+                    {data.notes && data.notes != 'null' ? data.notes - 0 + 1 : 0}
+                </span> {/if}
             </span>
-            <span aria-hidden="true" class = "cursor-pointer hover:bg-blue-100 ml-auto" on:click={setDuration}>{formatter(data.Duration, 'm2hm')}</span>
+            <span aria-hidden="true" class = "cursor-pointer hover:bg-blue-100 ml-auto" on:click={setDuration}>
+                {formatter(data.Duration, 'm2hm')}
+            </span>
         </div>
     {/if}
     </div>

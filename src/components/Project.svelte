@@ -129,7 +129,11 @@
         {#each data.taskList || [] as task}<li>
             <Task data = {task} on:taskUpdated = {reloadTasks}/>
         </li>{/each}
-        {#if !mini }<li class = "new-task"><Task  data = {{Name:'', Project_ID:data.ID, Date_Created:nowTS()}} on:taskUpdated = {reloadTasks}/></li>{/if}
+        {#if !mini }
+            <li class = "new-task">
+                <Task  data = {{Name:'', Project_ID:data.ID, Date_Created:nowTS()}} on:taskUpdated = {reloadTasks}/>
+            </li>
+        {/if}
     </ul>
 </div>
 
