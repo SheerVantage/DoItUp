@@ -2,10 +2,10 @@
     {#if data.editing}
         <textarea bind:value = {data.Content} bind:this = {ta} on:blur = {onBlur} class = "w-full bg-blue-100 p-1" name="" id=""></textarea>
     {:else}
-    <span class = "flex gap-1">
+    <div class = "flex gap-1">
         <input class = "mt-2" type="checkbox" bind:checked = {data.Is_Done} on:click={complete}/>
         <pre class:new-note = {data.Content == 'new note...'} style = "font-family:Arial, Helvetica, sans-serif; white-spaceeee: normal;" class = "font-serif w-full bg-blue-100 hover:bg-blue-200 rounded-lg p-1 px-2" aria-hidden="true" on:click={e=>edit(true, e)}>{data.Content}</pre>
-    </span>
+    </div>
     {/if}
 </div>
 
@@ -56,5 +56,11 @@
 </script>
 
 <style>
-    .new-note {color:gray; background-color: azure;}
+    .new-note { color:gray; background-color: azure; }
+    pre {
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        font-size: 15px;
+    }
 </style>

@@ -161,7 +161,7 @@
                     {data.notes && data.notes != 'null' ? data.notes - 0 + 1 : 0}
                 </span> {/if}
             </span>
-            <span aria-hidden="true" class = "cursor-pointer hover:bg-blue-100 ml-auto" on:click={setDuration}>
+            <span aria-hidden="true" class = "pl-0.5 cursor-pointer hover:bg-blue-100 ml-auto" on:click={setDuration}>
                 {formatter(data.Duration, 'm2hm')}
             </span>
         </div>
