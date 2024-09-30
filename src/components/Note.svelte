@@ -57,10 +57,5 @@
 
 <style>
     .new-note { color:gray; background-color: azure; }
-    pre {
-        overflow-x: auto;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        font-size: 15px;
-    }
+    pre { overflow-x: auto; white-space: pre-wrap; word-wrap: break-word; font-size: 14px;}
 </style>

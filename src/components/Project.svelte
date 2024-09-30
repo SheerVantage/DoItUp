@@ -151,8 +151,8 @@
     .remover {visibility:hidden; transition: visibility 300ms; transition-delay: 100ms; position: absolute; right: 10px; top: 0;}
     .project:hover .remover {visibility:visible; }
     .new-task:not(:focus-within) {visibility: hidden;}
-    .task-list {overflow: auto; max-height: 10rem; }
-    .row-span-2 .task-list {max-height: 20rem; min-height: calc(100% - 2rem);}
+    .task-list {overflow: auto; max-height: 15rem; }
+    .row-span-2 .task-list {max-height: 25rem; min-height: calc(100% - 2rem);}
     /* .col-span-2 .task-list {max-height: 20rem;} */
     .task-list:hover .new-task {visibility: visible;}
 </style>

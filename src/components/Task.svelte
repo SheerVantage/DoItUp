@@ -139,7 +139,7 @@
         </ul>
     </ModalDialog>
     {/if}
-    <div class = "flex gap-2 flex-grow items-centers align-top">
+    <div class = "flex gap-1 flex-grow items-centers align-top">
     {#if data.ID}<span class = "bg-red-200s ">
         {#if data.Deferred == 'true'}
             <span class = "font-bolds text-lg bg-blue-500s">{deferredIcon}</span>
