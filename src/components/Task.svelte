@@ -96,6 +96,7 @@
     }
     function onNoteChange(){
         update('tasks', {ID:data.ID, notes:notes.length})
+        loadNotes()
     }
 
     let showNotes = false
@@ -107,7 +108,7 @@
 </script>
 
 <!-- <div class = "task relative flex flex gap-1" class:doing = {data.ID && data.ID == $task?.ID}> -->
-<div class = "task relative flex flex gap-1">
+<div class = "task relative flex flex gap-0.5">
         {#if data.ID}
     <!-- <button id = "button-{data.ID}" class = "actions" popovertarget = "actions-{data.ID}" popovertargetaction = "toggle">∷</button> -->
     <SummaryDetails label = "∷" detailsClasses = "flex actions items-center" summaryClasses = "">
@@ -140,13 +141,13 @@
     </ModalDialog>
     {/if}
     <div class = "flex gap-1 flex-grow items-centers align-top">
-    {#if data.ID}<span class = "bg-red-200s ">
+    {#if data.ID}<span class = "bg-red-200s flex">
         {#if data.Deferred == 'true'}
             <span class = "font-bolds text-lg bg-blue-500s">{deferredIcon}</span>
         {:else if data.Archived == 'true'}
             <span class = "font-bolds text-sm bg-blue-500s">{archivedIcon}</span>
         {:else}
-            <input class = "mt-2" type="checkbox" bind:checked = {data.Done} on:click={complete}/>
+            <input class = "mt-1" type="checkbox" bind:checked = {data.Done} on:click={complete}/>
         {/if}
     </span>{/if}
     {#if data.editing}

@@ -34,10 +34,11 @@
         if(data.ID)
             update('notes', data)
         else if(data.Content){
-            data.ID = insert('notes', data)
+            // data.ID = 
+            insert('notes', data)
+            data = {Content:'new note...', Task_ID:data.Task_ID}
         }
         dispatch('change', data)
-        // data = {Content:'new note...', Task_ID:data.Task_ID}
     }
     
     function complete(){

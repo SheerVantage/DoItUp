@@ -37,7 +37,7 @@
             //   $worker.postMessage({action:'select', table:'projects'})
             // }
             // else if(data.action == 'select' && data.rows){
-              load('projects', '*', '', projectList =>{
+              load('projects', '*', '', 'Name COLLATE NOCASE asc', projectList =>{
                 // projects = list
                 let tasks = {}
                 load('tasks', '*', `'true' not in (${filters.join(', ')})`, taskList => {

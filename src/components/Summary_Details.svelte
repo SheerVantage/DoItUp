@@ -1,9 +1,8 @@
 <!-- https://codepen.io/WW3/pen/pYqRgq?editors=1010 -->
-<details aria-hidden="true" on:mouseover={hoverIn} on:focus={hoverIn} on:mouseout={hoverOut} on:blur={hoverOut} class = "flex w-fit relative { detailsClasses }" open = {isOpen}>
-    <summary aria-haspopup="menu" class = "inline-blocks cursor-pointer {summaryClasses}">{label || caption || 'Expand'} </summary>
+<details use:clickoutside on:clickoutside="{doSomething}" aria-hidden = "true" on:mouseover={hoverIn} on:focus={hoverIn} on:mouseout={hoverOut} on:blur={hoverOut} class = "flex w-fit relative { detailsClasses }" bind:open = {isOpen}>
+    <summary aria-hidden = "true" class = "inline-blocks cursor-pointer {summaryClasses}">{label || caption || 'Expand'} </summary>
     <!-- <ul role="menu" class = "content absolute"> -->
         <!-- <span role='menuitem'>fffff</span> -->
-
         <div class="dropdown-wrapper">
             <slot>Nothing here, yet...</slot>
         </div>
@@ -13,8 +12,13 @@
 
 <script type="text/javascript">
 	// import {transactions} from '../store.js'
+    import { clickoutside } from '../lib/utilities';
 	export let label = '', caption = '', summaryClasses, detailsClasses, isOpen = false
-
+    function doSomething(e) {
+		// alert(e.target.name);
+        // debugger
+        isOpen = false
+	}
     // $(function() {
     //     $('details').on('mouseover focus', function() {
     //         $(this).attr('open', true);
@@ -107,5 +111,25 @@ details.summary-closing[open] .dropdown-wrapper {
 		/* transform: translateY(-20px); */
 	}
 }
-
+details {
+  /* inline-size: 50ch; */
+  
+  @media (prefers-reduced-motion: no-preference) {
+    interpolate-size: allow-keywords;
+  }
+  
+  &::details-content {
+    opacity: 0;
+    block-size: 0;
+    overflow-y: clip; 
+    transition: content-visibility 1s allow-discrete,
+                opacity 1s,
+                block-size 1s;
+  }
+  
+  &[open]::details-content {
+    opacity: 1;
+    block-size: auto;
+  }
+}
 </style>

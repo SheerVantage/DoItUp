@@ -11,6 +11,43 @@ export function now(format = 'yyyy-mm-dd H:M:S'){
 		.replace('H', ("0"+date.getHours()).slice(-2)).replace('M', ("0"+(date.getUTCMinutes())).slice(-2)).replace('S', ("0" + (date.getUTCSeconds())).slice(-2))
 	return str;
 }
+export function clickoutside(node, param = { enabled: true }) {
+	let { enabled, eventType, nodeForEvent, options, capture } = resolveConfig(param);
+
+	/**
+	 * @param {Event} event
+	 */
+	function handle(event) {
+		if (!event.target) return;
+		if (node && !node.contains(/** @type {Node} */ (event.target)) && !event.defaultPrevented) {
+			node.dispatchEvent(new CustomEvent('clickoutside', { detail: event }));
+		}
+	}
+
+	if (param.enabled !== false) {
+		nodeForEvent.addEventListener(eventType, handle, options);
+	}
+
+	return {
+		update(update) {
+			nodeForEvent.removeEventListener(eventType, handle, capture);
+			({ enabled, eventType, nodeForEvent, options, capture } = resolveConfig(update));
+			if (enabled) nodeForEvent.addEventListener(eventType, handle, options);
+		},
+		destroy() {
+			nodeForEvent.removeEventListener(eventType, handle, capture);
+		},
+	};
+}
+export function resolveConfig(param = {}) {
+	return {
+		enabled: param.enabled ?? true,
+		nodeForEvent: param.limit?.parent ?? document,
+		eventType: param.event ?? 'click',
+		options: param.options,
+		capture: typeof param.options === 'object' ? param.options?.capture : param.options,
+	};
+}
 export function nowFull(ts){
 	var a = ts ? new Date(ts * 1000) : new Date()
 	// var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
