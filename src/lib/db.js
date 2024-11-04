@@ -63,6 +63,7 @@ export function remove(table, conditions){
 }
 
 export function update(table, data, conditions, callback){
+  // debugger
   delete data.editing
   $worker.postMessage({action:'update', table, fields_values:data, conditions})
   callback && callback

@@ -5,7 +5,7 @@
     import SummaryDetails from "./Summary_Details.svelte";
     import ModalDialog from "./Modal_Dialog.svelte";
     import Note from "./Note.svelte";
-  import {formatter} from '../components/Formatter.svelte'
+    import {formatter} from '../components/Formatter.svelte'
     import { createEventDispatcher } from "svelte";
 
     export let data
@@ -85,17 +85,22 @@
             if(focuses < 1){
                 edit(false)
             }
-        }, 300)
+        }, 100)
     }
     let dialog
     let notes
     async function loadNotes(){
         load('notes', '*', `Task_ID = ${data.ID}`, list=>{
-            notes = list
+            notes = list.map(item => {
+                item.Is_Done = item.Is_Done == 'true'
+                return item
+            })
+            // debugger
+            data.notes = notes.length
         })
     }
     function onNoteChange(){
-        update('tasks', {ID:data.ID, notes:notes.length})
+        update('tasks', {ID:data.ID, notes: data.notes})
         loadNotes()
     }
 
@@ -146,20 +151,23 @@
             <span class = "font-bolds text-lg bg-blue-500s">{deferredIcon}</span>
         {:else if data.Archived == 'true'}
             <span class = "font-bolds text-sm bg-blue-500s">{archivedIcon}</span>
-        {:else}
+        {:else if data.ID}
             <input class = "mt-1" type="checkbox" bind:checked = {data.Done} on:click={complete}/>
         {/if}
     </span>{/if}
     {#if data.editing}
-            <input bind:this = {nameEl} type="text" class = "task-title flex-grow" bind:value = {data.Name} on:focus = {onFocus} on:blur = {onBlur} on:edit = { e => { edit(false, e) }}
-                on:keypress = {(e)=>{ e.code == 'Enter' && edit(false, e)}}/>
+            <!-- <input bind:this = {nameEl} type="text" class = "task-title flex-grow" bind:value = {data.Name} on:focus = {onFocus} on:blur = {onBlur} on:edit = { e => { edit(false, e) }}
+                on:keypress = {(e)=>{ e.code == 'Enter' && edit(false, e)}}/> -->
+            <textarea bind:this = {nameEl} type="text" class = "task-title flex-grow" bind:value = {data.Name} on:focus = {onFocus} on:blur = {onBlur} on:edit = { e => { edit(false, e) }}
+                on:keypress = {(e)=>{ e.code == 'Enter' && edit(false, e)}}></textarea>
             <input type = "number" class = "w-12 px-0.5" bind:value = {data.Duration} on:focus = {onFocus} on:blur = {onBlur} on:keypress = { e => { e.code == 'Enter' && edit(false, e)}} />
     {:else}
         <div aria-hidden="true" class:bg-yellow-100 = {data.Urgent == 'true'} class:text-gray-400 = {data.Name == ''} class:text-red-600 = {data.Current == 'true'} class:deleted = {data.Deleted == 'true'} class = "task-title hover:bg-blue-200 rounded flex flex-grow relative w-full items-center" class:text-green = {data.Done == 'true'} >
             <span aria-hidden="true" on:click = {()=>edit(true)} class:deferred = {data.Deferred == 'true'} class:archived = {data.Archived == 'true'} class = " flex-grow">
                 {data.Name || 'add new task'}
                 {#if data.Name } <span aria-hidden="true" on:click|stopPropagation = {ShowNotes} class = "ml-0.5 rounded bg-blue-300 text-white text-xs px-1 cursor-pointer">
-                    {data.notes && data.notes != 'null' ? data.notes - 0 + 1 : 0}
+                    <!-- {data.notes && data.notes != 'null' ? data.notes - 0 : 0} -->
+                    {notes ? notes.length : ( data.notes && data.notes != 'null' ? data.notes - 0 : 0 )}
                 </span> {/if}
             </span>
             <span aria-hidden="true" class = "pl-0.5 cursor-pointer hover:bg-blue-100 ml-auto" on:click={setDuration}>
@@ -178,7 +186,7 @@
     input[type=checkbox] {width: 16px; height: 16px; transition: background 200ms ease-out 0s;}
     input[type=checkbox]:hover {background: whitesmoke;}
     .task{position: relative; color: #0D405F;}
-    .task-title { min-height:32px; border:1px; padding:0 0.3rem;}
+    .task-title { min-height:32px; padding:0 0.3rem;}
     .doing {background:pink;}
     .deleted {text-decoration: line-through;}
     .archived {color: rgba(31,128,232,.25);}

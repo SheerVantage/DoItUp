@@ -118,7 +118,6 @@
 <!-- {/if} -->
 
 <style>
-
 	.ml-1 {margin-left: 0.5rem;}
 	.ml-auto {margin-left: auto;}
 	.mt-auto {margin-top: auto;}
@@ -127,6 +126,4 @@
 	.cursor-pointer {cursor:pointer;}
 	.text-blue-700 {color:#1D4ED8;}
 	.font-bold {font-weight: 600;}
-
-
 </style>

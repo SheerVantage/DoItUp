@@ -50,9 +50,13 @@
         // debugger
         load('tasks', '*', `Project_ID = ${data.ID}` + filtersString, taskList => {
             data.taskList = taskList
+            duration = data.taskList.reduce((num, item)=>{
+                return num + (!item.Deffered && !item.Done && item.Duration ? item.Duration - 0 : 0)
+            }, 0)
         })
 
     }
+
     let filtersLast = []
     function updateFilter(filter){
 
@@ -96,7 +100,7 @@
             <div aria-hidden="true" class = "p-1s" on:click = {()=>edit(true)}>
                 <span class:text-xl = {!mini} class = "p-1 flex items-center">
                     {data.Name}
-                    <span type = "checkbox" class = "ml-auto flex item-center text-xs text-gray-500">{(tasks || []).length} tasks<!--span class = "text-xxs ml-0.5">📋</!span-->, {formatter(duration, 'm2hm', true)}</span>
+                    <span type = "checkbox" class = "ml-auto flex item-center text-xs text-gray-500">{(data.taskList || []).length} tasks<!--span class = "text-xxs ml-0.5">📋</!span-->, {formatter(duration, 'm2hm', true)}</span>
                 </span>
                 <!-- <button on:click={createTask}>+</button> -->
             </div>
@@ -107,6 +111,7 @@
     <span>{data.Status || ''}</span>
     <span>{data.Date_Start || ''}</span>
     <span>{data.Date_End || ''}</span> -->
+    <!-- <input type="text"> -->
     <span class = "remover flex gap-2">
         <SummaryDetails label = "∷ " detailsClasses = "flex actionss items-center" summaryClasses = "">
             <div class = "filters">
