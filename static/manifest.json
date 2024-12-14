@@ -1,7 +1,7 @@
 {
-	"name": "Quranica",
+	"name": "Do It Up",
 	"short_name": "quranica",
-	"start_url": "https://quranica.netlify.app",
+	"start_url": "https://doitup.netlify.app/",
 	"display": "standalone",
 	"theme_color": "#ffffff",
 	"background_color": "#000000",
@@ -23,7 +23,7 @@
           "sizes": "350x400",
           "type": "image/jpg",
           "form_factor": "wide",
-          "label": "Homescreen of Awesome App"
+          "label": "Homescreen of Awesome Apps"
         }
       ]
 }
