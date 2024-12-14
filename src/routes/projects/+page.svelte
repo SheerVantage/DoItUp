@@ -44,11 +44,11 @@
                     //tasks = list
                     // str += `Tasks:${data.tasks}, tasks count:${tasks.length}, TPID: ${tasks && tasks.length > 0 ? tasks[0].Project_ID : ''}`
                     //console.log(data.ID +':'+ list.length)
-                    taskList.forEach(task => {
+                    taskList?.forEach(task => {
                       if(!tasks[task.Project_ID]) tasks[task.Project_ID] = []
                       tasks[task.Project_ID].push(task)
                     });
-                    projectList.forEach(project => {
+                    projectList?.forEach(project => {
                       project.taskList = tasks[project.ID]
                     })
                     projects = projectList

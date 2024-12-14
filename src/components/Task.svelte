@@ -165,7 +165,7 @@
         <div aria-hidden="true" class:bg-yellow-100 = {data.Urgent == 'true'} class:text-gray-400 = {data.Name == ''} class:text-red-600 = {data.Current == 'true'} class:deleted = {data.Deleted == 'true'} class = "task-title hover:bg-blue-200 rounded flex flex-grow relative w-full items-center" class:text-green = {data.Done == 'true'} >
             <span aria-hidden="true" on:click = {()=>edit(true)} class:deferred = {data.Deferred == 'true'} class:archived = {data.Archived == 'true'} class = " flex-grow">
                 {data.Name || 'add new task'}
-                {#if data.Name } <span aria-hidden="true" on:click|stopPropagation = {ShowNotes} class = "ml-0.5 rounded bg-blue-300 text-white text-xs px-1 cursor-pointer">
+                {#if data.Name } <span aria-hidden="true" on:click|stopPropagation = {ShowNotes} class = "ml-0.5 rounded bg-yellow-200 text-blue-600 text-xs px-1 cursor-pointer">
                     <!-- {data.notes && data.notes != 'null' ? data.notes - 0 : 0} -->
                     {notes ? notes.length : ( data.notes && data.notes != 'null' ? data.notes - 0 : 0 )}
                 </span> {/if}
