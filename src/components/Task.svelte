@@ -43,23 +43,23 @@
             data.Doing = event.detail.value //data.Doing == 'true' ? 'false' : 'true'
             update('tasks', { ID:data.ID, Doing: data.Doing, DateTime_Start: time })
             // insert('sessions', {Task_ID:data.ID, DateTime_Start: time})
-            dispatch('taskUpdated', data)
+            // dispatch('taskUpdated', data)
         }, 6000)
     }
     function urgent(event){
         data.Urgent = event.detail.value //data.Urgent == 'true' ? 'false' : 'true'
         update('tasks', { ID:data.ID, Urgent: data.Urgent })
-        dispatch('taskUpdated', data)
+        // dispatch('taskUpdated', data)
     }
     function archive(event){
         data.Archived = event.detail.value //data.Archived == 'true' ? 'false' : 'true'
         update('tasks', { ID:data.ID, Archived: data.Archived })
-        dispatch('taskUpdated', data)
+        // dispatch('taskUpdated', data)
     }
     function defer(event){
         data.Deferred = event.detail.value //data.Deferred == 'true' ? 'false' : 'true'
         update('tasks', { ID:data.ID, Deferred: data.Deferred })
-        dispatch('taskUpdated', data)
+        // dispatch('taskUpdated', data)
     }
     function schedule(event){
         if(!data.Current && !data.Duration){
@@ -67,7 +67,7 @@
         }
         data.Current = event.detail.value //data.Current == 'true' ? 'false' : 'true'
         update('tasks', { ID:data.ID, DateTime_Start: nowTS(), Current: data.Current })
-        dispatch('taskUpdated', data)
+        // dispatch('taskUpdated', data)
     }
     function setDuration(){
         let duration = prompt('how long?', data.Duration)
