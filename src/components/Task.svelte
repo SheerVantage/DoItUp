@@ -36,39 +36,37 @@
         remove('tasks', `tasks.ID = ${task.ID}`)
         // dispatch('taskUpdated', data)
     }
-    function start(data){
+    function start(event){
         let time = nowTS()
         // $task = data
         setTimeout(()=>{
-            data.Doing = data.Doing == 'true' ? 'false' : 'true'
+            data.Doing = event.detail.value //data.Doing == 'true' ? 'false' : 'true'
             update('tasks', { ID:data.ID, Doing: data.Doing, DateTime_Start: time })
             // insert('sessions', {Task_ID:data.ID, DateTime_Start: time})
             dispatch('taskUpdated', data)
         }, 6000)
     }
-    function urgent(data){
-        data.Urgent = data.Urgent == 'true' ? 'false' : 'true'
+    function urgent(event){
+        data.Urgent = event.detail.value //data.Urgent == 'true' ? 'false' : 'true'
         update('tasks', { ID:data.ID, Urgent: data.Urgent })
         dispatch('taskUpdated', data)
     }
-    function archive(){
-        data.Archived = data.Archived == 'true' ? 'false' : 'true'
+    function archive(event){
+        data.Archived = event.detail.value //data.Archived == 'true' ? 'false' : 'true'
         update('tasks', { ID:data.ID, Archived: data.Archived })
         dispatch('taskUpdated', data)
     }
-    function defer(){
-        console.log(data.Deferred)
-        data.Deferred = data.Deferred == 'true' ? 'false' : 'true'
+    function defer(event){
+        data.Deferred = event.detail.value //data.Deferred == 'true' ? 'false' : 'true'
         update('tasks', { ID:data.ID, Deferred: data.Deferred })
-        console.log(data.Deferred)
         dispatch('taskUpdated', data)
     }
-    function schedule(){
+    function schedule(event){
         if(!data.Current && !data.Duration){
             data.Duration = prompt('Work for how long?')
         }
-        data.Current = data.Current != true
-        update('tasks', { ID:data.ID, DateTime_Start: nowTS(), Current: data.Current, Duration:data.Duration, Archived:false })
+        data.Current = event.detail.value //data.Current == 'true' ? 'false' : 'true'
+        update('tasks', { ID:data.ID, DateTime_Start: nowTS(), Current: data.Current })
         dispatch('taskUpdated', data)
     }
     function setDuration(){
@@ -131,12 +129,12 @@
     <!-- <button id = "button-{data.ID}" class = "actions" popovertarget = "actions-{data.ID}" popovertargetaction = "toggle">∷</button> -->
     <SummaryDetails label = "∷" detailsClasses = "flex actions items-center" summaryClasses = "">
         <div class = "actionss top-0.5 left-2 z-3 absolute text-black bg-blue-100 drop-shadow-xl px-2 py-0.5 flex gap-1 ml-2 rounded border-2">
-            <Flag title = "remove" on:change = {e=>removeTask(data)} symbol = "⨯" />
-            <Flag bind:value = {data.Archived} title = "archive" on:change = {e=>archive(data)} symbol = "{archivedIcon}" />
-            <Flag bind:value = {data.Deferred} title = "defer" on:change = {e=>defer(data)} class = "text-lg" symbol = "{deferredIcon}" />
-            <Flag bind:value = {data.Doing} title = "start" on:change = {e=>start(data)} symbol = "▷" />
-            <Flag bind:value = {data.Urgent} title = "urgent" on:change = {e=>urgent(data)} symbol = "⭐" />
-            <Flag bind:value = {data.Current} title = "schedule"class = "text-sm" on:change = {e=>schedule(data)} symbol = "🗓" />
+            <Flag title = "remove" on:change = {removeTask} symbol = "⨯" />
+            <Flag bind:value = {data.Archived} title = "archive" on:change = {archive} symbol = "{archivedIcon}" />
+            <Flag bind:value = {data.Deferred} title = "defer" on:change = {defer} classes = "text-lg" symbol = "{deferredIcon}" />
+            <Flag bind:value = {data.Doing} title = "start" on:change = {start} symbol = "▷" />
+            <Flag bind:value = {data.Urgent} title = "urgent" on:change = {urgent} symbol = "⭐" />
+            <Flag bind:value = {data.Current} title = "schedule"on:change = {schedule} classes = "text-sm" symbol = "🗓" />
             <!-- <Flag title = "Notes"class = "text-sms" on:click|stopPropagation = {ShowNotes}>▢</button> -->
             <!-- <ModalDialog bind:isOpen = {showNotes} classes = "p-2" init = {loadNotes} size = "small" label = "▢" bind:this = {dialog}>
                 <span class = "mb-2">Title: {data.Name}</span>
