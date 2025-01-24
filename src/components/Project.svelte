@@ -118,7 +118,7 @@
                 <Flag bind:value = {data.Show_All} symbol = '*' on:change = {()=>updateFilter('All')}/>
                 <Flag bind:value = {data.Show_Archived} symbol = '📂' on:change = {()=>updateFilter('Archived')}/>
                 <Flag bind:value = {data.Show_Deleted} symbol = '⨯' on:change = {()=>updateFilter('Deleted')} />
-                <Flag bind:value = {data.Show_Cancelled} symbol = 'c' on:change = {()=>updateFilter('Cancelled')} />
+                <!-- <Flag bind:value = {data.Show_Cancelled} symbol = 'c' on:change = {()=>updateFilter('Cancelled')} /> -->
                 <Flag bind:value = {data.Show_Deferred} symbol = 'ⓘ' on:change = {()=>updateFilter('Deferred')} />
                 <Flag bind:value = {data.Show_Done} symbol = '☑' on:change = {()=>updateFilter('Done')} />
                 <!-- <Flag bind:value = {data.Is_Tall} symbol = '🡥' on:change = {()=>{update('projects', {ID:data.ID, Is_Tall:data.Is_Tall})}} /> -->
