@@ -145,11 +145,11 @@
 <style>
     .project {position: relative; }
     .filters {
-        box-shadow: 0 3px 10px -3px brown; border-radius: 0 0 5px 5px; transition: 0.3s opacity, 0.2s top; 
-        opacitys: 0; visibility: hidden; position: absolute; tops:-12px; right: 0%; display: inline-flex; gap:0.5rem; 
+        box-shadow: 0 3px 10px -3px brown; border-radius: 0 0 5px 5px; transition: 0.1s opacity, 0.2s top; 
+        opacity: 0; visibility: hidden; position: absolute; right: 0%; display: inline-flex; gap:0.5rem; 
         padding:0.1rem 0.3rem; background-color: antiquewhite;
     }
-    .project:hover .filters {visibility: visible; tops:0px; opacity: 0.8;}
+    .project:hover .filters {visibility: visible; top:0px; opacity: 0.8;}
     :is(div, li) > button {visibility: hidden;}
     :is(div, li):hover > button {visibility: visible;}
     span:empty {display: none;}

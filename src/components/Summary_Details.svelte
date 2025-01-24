@@ -84,11 +84,11 @@
 
     
 details[open] .dropdown-wrapper {
-	animation: fade-in 0.5s forwards;
+	animation: fade-in 0.1s forwards;
 }
 
 details.summary-closing[open] .dropdown-wrapper {
-	animation: fade-out 0.5s forwards;
+	animation: fade-out 0.3s forwards;
 }
 
 @keyframes fade-in {

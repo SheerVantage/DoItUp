@@ -1,7 +1,8 @@
 {
 	"name": "Do It Up",
 	"short_name": "quranica",
-	"start_url": "https://doitup.netlify.app/",
+	"start_url": "/",
+	"start_urls": "https://doitup.netlify.app/",
 	"display": "standalone",
 	"theme_color": "#ffffff",
 	"background_color": "#000000",
