@@ -3,7 +3,7 @@
     import {getItem, task} from '../lib/store'
     import {nowTS} from '../lib/utilities'
     import SummaryDetails from "./Summary_Details.svelte";
-    import ModalDialog from "./Modal_Dialog.svelte";
+    import ModalDialog from "./Dialog.svelte";
     import Note from "./Note.svelte";
     import {formatter} from '../components/Formatter.svelte'
     import { createEventDispatcher } from "svelte";
@@ -182,7 +182,7 @@
                     {notes ? notes.length : ( data.notes && data.notes != 'null' ? data.notes - 0 : 0 )}
                 </span> {/if}
             </span>
-            <span aria-hidden="true" class = "pl-0.5 cursor-pointer hover:bg-blue-100 ml-auto" on:click={setDuration}>
+            <span aria-hidden="true" class = "px-0.5 cursor-pointer hover:bg-blue-100 ml-auto" on:click={setDuration}>
                 {formatter(data.Duration, 'm2hm')}
             </span>
         </div>
